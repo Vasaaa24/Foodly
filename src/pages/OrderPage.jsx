@@ -1,6 +1,6 @@
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { useEffect } from 'react';
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useEffect } from "react";
 
 const OrderPage = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const OrderPage = () => {
 
   // Získání ID stolku z URL parametru ?table=12
   const urlParams = new URLSearchParams(location.search);
-  const tableId = urlParams.get('table') || '1';
+  const tableId = urlParams.get("table") || "1";
 
   useEffect(() => {
     // Po potvrzení objednávky vyprázdni košík
@@ -18,7 +18,7 @@ const OrderPage = () => {
   }, [clearCart]);
 
   const handleBackToMenu = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -26,26 +26,26 @@ const OrderPage = () => {
       <div className="order-confirmation">
         <div className="success-icon">✅</div>
         <h1>Objednávka potvrzena!</h1>
-        
+
         <div className="order-details">
           <div className="order-info-card">
             <h3>Detaily objednávky</h3>
-            
+
             <div className="order-detail-row">
               <span className="label">ID objednávky:</span>
               <span className="value">#{id}</span>
             </div>
-            
+
             <div className="order-detail-row">
               <span className="label">Stůl č.:</span>
               <span className="value">{tableId}</span>
             </div>
-            
+
             <div className="order-detail-row">
               <span className="label">Stav objednávky:</span>
               <span className="value status-new">Nová</span>
             </div>
-            
+
             <div className="order-detail-row total">
               <span className="label">Celková cena:</span>
               <span className="value">{totalPrice.toFixed(2)} Kč</span>
@@ -63,10 +63,7 @@ const OrderPage = () => {
         </div>
 
         <div className="order-actions">
-          <button 
-            className="back-to-menu-btn"
-            onClick={handleBackToMenu}
-          >
+          <button className="back-to-menu-btn" onClick={handleBackToMenu}>
             Zpět do menu
           </button>
         </div>

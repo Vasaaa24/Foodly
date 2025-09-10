@@ -1,14 +1,14 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from "react";
 
 // Cart Context
 const CartContext = createContext();
 
 // Cart Actions
 const CART_ACTIONS = {
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
-  UPDATE_QUANTITY: 'UPDATE_QUANTITY',
-  CLEAR_CART: 'CLEAR_CART'
+  ADD_ITEM: "ADD_ITEM",
+  REMOVE_ITEM: "REMOVE_ITEM",
+  UPDATE_QUANTITY: "UPDATE_QUANTITY",
+  CLEAR_CART: "CLEAR_CART",
 };
 
 // Cart Reducer
@@ -16,29 +16,31 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case CART_ACTIONS.ADD_ITEM: {
       const existingItemIndex = state.items.findIndex(
-        item => item.id === action.payload.id
+        (item) => item.id === action.payload.id
       );
 
       if (existingItemIndex >= 0) {
-        // Pokud položka už existuje, zvyš počet
+        
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex].qty += 1;
         return { ...state, items: updatedItems };
       } else {
-        // Přidej novou položku s qty = 1
+      
         return {
           ...state,
-          items: [...state.items, { ...action.payload, qty: 1 }]
+          items: [...state.items, { ...action.payload, qty: 1 }],
         };
       }
     }
 
     case CART_ACTIONS.UPDATE_QUANTITY: {
-      const updatedItems = state.items.map(item =>
-        item.id === action.payload.id
-          ? { ...item, qty: action.payload.qty }
-          : item
-      ).filter(item => item.qty > 0); // Odstraň položky s qty = 0
+      const updatedItems = state.items
+        .map((item) =>
+          item.id === action.payload.id
+            ? { ...item, qty: action.payload.qty }
+            : item
+        )
+        .filter((item) => item.qty > 0); // Odstraň položky s qty = 0
 
       return { ...state, items: updatedItems };
     }
@@ -46,7 +48,7 @@ const cartReducer = (state, action) => {
     case CART_ACTIONS.REMOVE_ITEM: {
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload.id)
+        items: state.items.filter((item) => item.id !== action.payload.id),
       };
     }
 
@@ -61,7 +63,7 @@ const cartReducer = (state, action) => {
 
 // Initial State
 const initialState = {
-  items: []
+  items: [],
 };
 
 // Cart Provider Component
@@ -87,7 +89,10 @@ export const CartProvider = ({ children }) => {
 
   // Computed values
   const totalItems = state.items.reduce((total, item) => total + item.qty, 0);
-  const totalPrice = state.items.reduce((total, item) => total + (item.price * item.qty), 0);
+  const totalPrice = state.items.reduce(
+    (total, item) => total + item.price * item.qty,
+    0
+  );
 
   const value = {
     items: state.items,
@@ -96,21 +101,17 @@ export const CartProvider = ({ children }) => {
     addItem,
     updateQuantity,
     removeItem,
-    clearCart
+    clearCart,
   };
 
-  return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
 // Custom hook to use cart context
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 };

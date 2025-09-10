@@ -1,4 +1,4 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from "../context/CartContext";
 
 const CartItem = ({ item }) => {
   const { updateQuantity, removeItem } = useCart();
@@ -20,14 +20,14 @@ const CartItem = ({ item }) => {
 
       <div className="cart-item-controls">
         <div className="quantity-controls">
-          <button 
+          <button
             className="qty-btn"
             onClick={() => handleQuantityChange(item.qty - 1)}
           >
             -
           </button>
           <span className="quantity">{item.qty}</span>
-          <button 
+          <button
             className="qty-btn"
             onClick={() => handleQuantityChange(item.qty + 1)}
           >
@@ -39,10 +39,7 @@ const CartItem = ({ item }) => {
           {(item.price * item.qty).toFixed(2)} Kč
         </div>
 
-        <button 
-          className="remove-btn"
-          onClick={() => removeItem(item.id)}
-        >
+        <button className="remove-btn" onClick={() => removeItem(item.id)}>
           🗑️
         </button>
       </div>

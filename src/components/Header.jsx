@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const { totalItems } = useCart();
@@ -7,22 +7,18 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="header-left">
-          {/* Vlevo nic podle specifikace */}
-        </div>
-        
+        <div className="header-left">{/* Vlevo nic podle specifikace */}</div>
+
         <div className="header-center">
           <Link to="/" className="logo">
             <h1>🍽️ Foodly</h1>
           </Link>
         </div>
-        
+
         <div className="header-right">
           <Link to="/cart" className="cart-icon">
             🛒
-            {totalItems > 0 && (
-              <span className="cart-badge">{totalItems}</span>
-            )}
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </Link>
         </div>
       </div>
