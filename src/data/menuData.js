@@ -246,7 +246,7 @@ export const MENU_ITEMS = [
     description: "Osvěžující limonáda 0.33l",
     price: 45,
     image:
-      "https://blog.boon.so/wp-content/uploads/2024/03/Coca-Cola-Logo-3-1-scaled.jpg",
+      "https://t3.ftcdn.net/jpg/07/29/63/02/360_F_729630262_7hAna5MDjwAd0vAmU3v25u2v3jBaZw8A.jpg",
   },
   {
     id: 11,

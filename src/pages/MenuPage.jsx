@@ -7,7 +7,6 @@ const MenuPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
 
-  
   const filteredItems = MENU_ITEMS.filter((item) => {
     const matchesCategory = item.category === selectedCategory;
     const matchesSearch =
@@ -20,7 +19,6 @@ const MenuPage = () => {
     if (categoryId !== selectedCategory) {
       setIsAnimating(true);
 
-     
       setTimeout(() => {
         setSelectedCategory(categoryId);
         setIsAnimating(false);
@@ -28,7 +26,6 @@ const MenuPage = () => {
     }
   };
 
- 
   useEffect(() => {
     setIsAnimating(false);
   }, [selectedCategory]);
