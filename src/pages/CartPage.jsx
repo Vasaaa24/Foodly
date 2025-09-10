@@ -1,18 +1,32 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import CartItem from "../components/CartItem";
+import PaymentModal from "../components/PaymentModal";
 
 const CartPage = () => {
   const { items, totalPrice, totalItems, clearCart } = useCart();
   const navigate = useNavigate();
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const handleOrder = () => {
     if (items.length > 0) {
-      // Generuj náhodné ID objednávky
-      const orderId = Math.floor(Math.random() * 10000);
-      // Přesměruj na stránku objednávky
-      navigate(`/order/${orderId}`);
+      setShowPaymentModal(true);
     }
+  };
+
+  const handlePaymentConfirm = (paymentMethod) => {
+    // Generuj náhodné ID objednávky
+    const orderId = Math.floor(Math.random() * 10000);
+    // Přesměruj na stránku objednávky s informací o platbě
+    navigate(`/order/${orderId}`, {
+      state: {
+        paymentMethod,
+        items: [...items],
+        total: totalPrice,
+      },
+    });
+    clearCart();
   };
 
   if (items.length === 0) {
@@ -69,6 +83,13 @@ const CartPage = () => {
           </button>
         </div>
       </div>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        total={totalPrice.toFixed(2)}
+        onPaymentConfirm={handlePaymentConfirm}
+      />
     </div>
   );
 };

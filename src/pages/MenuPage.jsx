@@ -5,7 +5,7 @@ import MenuItem from "../components/MenuItem";
 const MenuPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("predkrmy");
   const [searchTerm, setSearchTerm] = useState("");
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationState, setAnimationState] = useState("idle"); // idle, changing, entering
 
   const filteredItems = MENU_ITEMS.filter((item) => {
     const matchesCategory = item.category === selectedCategory;
@@ -17,18 +17,29 @@ const MenuPage = () => {
 
   const handleCategoryChange = (categoryId) => {
     if (categoryId !== selectedCategory) {
-      setIsAnimating(true);
+      setAnimationState("changing");
 
       setTimeout(() => {
         setSelectedCategory(categoryId);
-        setIsAnimating(false);
-      }, 100);
+        setAnimationState("entering");
+
+        setTimeout(() => {
+          setAnimationState("idle");
+        }, 500);
+      }, 200);
     }
   };
 
-  useEffect(() => {
-    setIsAnimating(false);
-  }, [selectedCategory]);
+  const getMenuItemsClassName = () => {
+    switch (animationState) {
+      case "changing":
+        return "menu-items changing";
+      case "entering":
+        return "menu-items entering";
+      default:
+        return "menu-items";
+    }
+  };
 
   return (
     <div className="menu-page">
@@ -61,7 +72,7 @@ const MenuPage = () => {
       </div>
 
       {/* Seznam jídel */}
-      <div className={`menu-items ${isAnimating ? "animating" : ""}`}>
+      <div className={getMenuItemsClassName()}>
         {filteredItems.length > 0 ? (
           filteredItems.map((item, index) => (
             <MenuItem

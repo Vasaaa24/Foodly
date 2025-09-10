@@ -8,14 +8,29 @@ const OrderPage = () => {
   const navigate = useNavigate();
   const { totalPrice, clearCart } = useCart();
 
+  // Získání dat z navigace (payment method, items, total)
+  const orderData = location.state || {};
+  const { paymentMethod, items = [], total = totalPrice } = orderData;
+
   // Získání ID stolku z URL parametru ?table=12
   const urlParams = new URLSearchParams(location.search);
   const tableId = urlParams.get("table") || "1";
 
+  // Mapování platebních metod pro zobrazení
+  const paymentMethodNames = {
+    cash: "Hotovost",
+    card: "Platební karta",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "bank-transfer": "Bankovní převod",
+  };
+
   useEffect(() => {
-    // Po potvrzení objednávky vyprázdni košík
-    clearCart();
-  }, [clearCart]);
+    // Po potvrzení objednávky vyprázdni košík (pokud ještě není prázdný)
+    if (items.length === 0) {
+      clearCart();
+    }
+  }, [clearCart, items.length]);
 
   const handleBackToMenu = () => {
     navigate("/");
@@ -46,9 +61,20 @@ const OrderPage = () => {
               <span className="value status-new">Nová</span>
             </div>
 
+            {paymentMethod && (
+              <div className="order-detail-row">
+                <span className="label">Způsob platby:</span>
+                <span className="value">
+                  {paymentMethodNames[paymentMethod] || paymentMethod}
+                </span>
+              </div>
+            )}
+
             <div className="order-detail-row total">
               <span className="label">Celková cena:</span>
-              <span className="value">{totalPrice.toFixed(2)} Kč</span>
+              <span className="value">
+                {(total || totalPrice).toFixed(2)} Kč
+              </span>
             </div>
           </div>
 
