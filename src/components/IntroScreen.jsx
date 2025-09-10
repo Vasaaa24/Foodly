@@ -10,7 +10,7 @@ const IntroScreen = ({ onComplete }) => {
       setTimeout(() => {
         onComplete();
       }, 500); // Čekáme na fade out animaci
-    }, 7000); // 7 sekund
+    }, 5000); // 5 sekund
 
     return () => clearTimeout(timer);
   }, [onComplete]);

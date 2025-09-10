@@ -33,8 +33,6 @@ const MenuPage = () => {
   return (
     <div className="menu-page">
       <div className="menu-header">
-        <h2>Naše menu</h2>
-
         {/* Vyhledávací pole */}
         <div className="search-container">
           <input
