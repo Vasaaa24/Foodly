@@ -212,6 +212,12 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
             <p className="product-description">
               {product?.description || "Popis není k dispozici"}
             </p>
+            {product?.detailDescription && (
+              <div className="product-detailed-description">
+                <h4>Podrobné informace:</h4>
+                <p>{product.detailDescription}</p>
+              </div>
+            )}
             <p className="product-base-price">
               Základní cena: {product?.price || 0} Kč
             </p>

@@ -7,12 +7,39 @@ export const MENU_CATEGORIES = [
 ];
 
 export const MENU_ITEMS = [
-  // Předkrmy
+  /  // Nápoje
+  {
+    id: 10,
+    category: "napoje",
+    name: "Coca Cola",
+    description: "Osvěžující limonáda 0.33l",
+    detailDescription: "Originální Coca-Cola v skleněné lahvi nebo z automatu. Perfektně chlazená, s ledem a citronem na přání. Obsahuje kofein a cukr. Objem: 0,33l nebo 0,5l. Bez konzervantů. Možnost verze Zero nebo Light.",
+    price: 45,
+    image:
+      "https://t3.ftcdn.net/jpg/07/29/63/02/360_F_729630262_7hAna5MDjwAd0vAmU3v25u2v3jBaZw8A.jpg",
+  },
+  {
+    id: 11,
+    category: "napoje",
+    name: "Pivo Pilsner",
+    description: "Čerstvé točené pivo 0.5l",
+    detailDescription: "Český ležák Pilsner Urquell z tankového piva. Čerstvě načepováno s dokonalou pěnou. Alkohol: 4,4%. Objem: 0,3l nebo 0,5l. Podáváno v chlazené sklenici při teplotě 6-8°C. Ke konzumaci pouze osobám starším 18 let.",
+    price: 59,
+    id: 15,
+    category: "predkrmy",
+    name: "Carpaccio z hovězího",
+    description: "Tenké plátky hovězího s rukolou a parmazánem",
+    detailDescription: "Prémiové hovězí maso nakrájené na tenké plátky, podávané na lůžku čerstvé rukoly. Dozdobeno hoblinkami parmazánu, olivovým olejem extra virgin, citronovou šťávou a černým pepřem. Obsahuje: lepek, mléko. Hmotnost: 120g.",
+    price: 189,
+    image:
+      "https://kuchynelidlu.cz/productFiles/7293/1-KW-20-21-beautyshot-1132x637-Hovezi-carpaccio.jpeg",
+  },
   {
     id: 1,
     category: "predkrmy",
     name: "Česnekový chléb",
     description: "Domácí chléb s česnekovým máslem a bylinkami",
+    detailDescription: "Křupavý domácí chléb potřený aromatickým česnekovým máslem s čerstvými bylinkami (petržel, oregano, bazalka). Pečený v troubě do zlatova. Obsahuje: lepek, mléko. Hmotnost: 200g. Servírovaný teplý.",
     price: 89,
     image: "https://www.nejrecept.cz/upload/82229975_63ba87fab48e45_full.jpg",
   },
@@ -21,6 +48,7 @@ export const MENU_ITEMS = [
     category: "predkrmy",
     name: "Kuřecí křídélka",
     description: "Křupavá kuřecí křídélka s výběrem omáček a pálivosti",
+    detailDescription: "Šťavná kuřecí křídélka marinovaná 24 hodin v bylinkách a kořeních. Grilovaná do křupava a podávaná s výběrem domácích omáček: BBQ, buffalo, honey mustard, česneková. Obsahuje: lepek (v některých omáčkách). Hmotnost: 400g (8 ks).",
     price: 159,
     image:
       "https://images.unsplash.com/photo-1608039755401-742074f0548d?w=300&h=200&fit=crop",
@@ -30,6 +58,7 @@ export const MENU_ITEMS = [
     category: "predkrmy",
     name: "Mozzarella sticks",
     description: "Smažená mozzarella s marinara omáčkou",
+    detailDescription: "Pravá mozzarella obalená v křupavé strouhance a smažená v oleji. Podáváná s domácí marinara omáčkou z rajčat, česneku a italských bylinek. Obsahuje: lepek, mléko, vejce. Hmotnost: 180g (6 ks). Servírováno ihned po usmažení.",
     price: 129,
     image:
       "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=300&h=200&fit=crop",
@@ -39,24 +68,17 @@ export const MENU_ITEMS = [
     category: "predkrmy",
     name: "Avokádové toasty",
     description: "Čerstvé avokádo na grilovaném chlebu s lime",
+    detailDescription: "Zralé avokádo rozmačkané s limetkou, solí a černým pepřem, namazané na grilovaný sourdough chléb. Dozdobeno cherry rajčátky, červenou cibulí a chilli vločkami. Obsahuje: lepek. Hmotnost: 250g (2 ks). Vegan možnost.",
     price: 139,
     image:
       "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=300&h=200&fit=crop",
-  },
-  {
-    id: 15,
-    category: "predkrmy",
-    name: "Carpaccio z hovězího",
-    description: "Tenké plátky hovězího s rukolou a parmazánem",
-    price: 189,
-    image:
-      "https://kuchynelidlu.cz/productFiles/7293/1-KW-20-21-beautyshot-1132x637-Hovezi-carpaccio.jpeg",
   },
   {
     id: 16,
     category: "predkrmy",
     name: "Bruschetta mix",
     description: "Tři druhy bruschett s rajčaty, olivami a kozím sýrem",
+    detailDescription: "Trio grilovaných chlebů s třemi různými toppingy: 1) Klasická s rajčaty, bazalkou a česnekem, 2) Olivová s černými olivami a bylinkami, 3) Kozí sýr s medem a ořechy. Obsahuje: lepek, mléko, ořechy. Hmotnost: 300g (6 ks).",
     price: 149,
     image:
       "https://images.unsplash.com/photo-1506280754576-f6fa8a873550?w=300&h=200&fit=crop",
@@ -66,6 +88,7 @@ export const MENU_ITEMS = [
     category: "predkrmy",
     name: "Hummus s pitou",
     description: "Domácí hummus s grilovanou pitou a zeleninou",
+    detailDescription: "Krémový hummus z cizrny, tahini, citronu a česneku, podávaný s teplou grilovanou pitou a čerstvou zeleninou (mrkev, celer, papriky). Dozdoben olivovým olejem a paprikou. Obsahuje: lepek, sezam. Hmotnost: 280g. Vegan.",
     price: 119,
     image:
       "https://www.damejidlo.cz/c/blog/wp-content/uploads/sites/2/2021/02/hummus-4.jpg",
@@ -75,6 +98,7 @@ export const MENU_ITEMS = [
     category: "predkrmy",
     name: "Tatarák z lososa",
     description: "Čerstvý lososový tatarák s avokádem a kaviárem",
+    detailDescription: "Prémiový norský losos nakrájený na kostičky, smíchaný s avokádem, červenou cibulí, kapary a citronovou šťávou. Dozdoben kaviárem a podáván s tousty. Obsahuje: lepek, ryby. Hmotnost: 150g. Servírováno čerstvé a chlazené.",
     price: 199,
     image:
       "https://www.letemgastrosvetem.cz/wp-content/uploads/2018/03/DSCF8267-2.jpg",
@@ -86,6 +110,7 @@ export const MENU_ITEMS = [
     category: "hlavni",
     name: "Steak s přílohou",
     description: "Šťavnatý steak z hovězího masa s výběrem přípravy a přílohy",
+    detailDescription: "Prémiový hovězí steak (200g) z mladého býka, grilovaný podle přání (rare, medium-rare, medium, well-done). Na výběr přílohy: hranolky, pečené brambory, rýže nebo grilovaná zelenina. Podáváno s bylinkovou omáčkou. Obsahuje: mléko (v omáčce). Čas přípravy: 15-20 min.",
     price: 349,
     image:
       "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=300&h=200&fit=crop",
@@ -96,6 +121,7 @@ export const MENU_ITEMS = [
     name: "Pizza Margherita",
     description:
       "Rajčatová omáčka, mozzarella, bazalka - výběr velikosti a těsta",
+    detailDescription: "Klasická italská pizza na křupavém těstě (výběr: klasické, celozrnné, tenké). Domácí rajčatová omáčka, mozzarella di bufala, čerstvá bazalka a olivový olej. Velikosti: 24cm, 30cm, 36cm. Obsahuje: lepek, mléko. Čas přípravy: 12-15 min. Možnost vegan sýra.",
     price: 189,
     image:
       "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=300&h=200&fit=crop",
@@ -105,6 +131,7 @@ export const MENU_ITEMS = [
     category: "hlavni",
     name: "Grilovaný losos",
     description: "Čerstvý losos s brambory a zeleninovou směsí",
+    detailDescription: "Filet norského lososa (180g) grilovaný na olivovém oleji s bylinkami. Podáváno s novými bramborami s máslem a petrželí a směsí sezonní zeleniny (brokolice, mrkev, cuketa). Obsahuje: ryby, mléko. Bohatý na omega-3 mastné kyseliny. Čas přípravy: 12-15 min.",
     price: 329,
     image:
       "https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=300&h=200&fit=crop",
@@ -114,6 +141,7 @@ export const MENU_ITEMS = [
     category: "hlavni",
     name: "Kuřecí steak",
     description: "Grilované kuřecí prso s rýží a omáčkou",
+    detailDescription: "Šťavné kuřecí prso (200g) marinované v bylinkách a grilované do zlatova. Podáváno s jasmínovou rýží a výběrem omáčky: smetanová houbová, teriyaki nebo česneková. Obsahuje: mléko (v některých omáčkách). Čas přípravy: 15-18 min.",
     price: 219,
     image:
       "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=200&fit=crop",
@@ -123,6 +151,7 @@ export const MENU_ITEMS = [
     category: "hlavni",
     name: "Pasta Carbonara",
     description: "Spaghetti s anglickou slaninou, vejci a parmazánem",
+    detailDescription: "Autentická italská carbonara s čerstvými spaghetti, křupavou anglickou slaninou, organickými vejci a zrajícím parmazánem. Připravená podle tradiční receptury bez smetany. Obsahuje: lepek, mléko, vejce. Hmotnost: 350g. Čas přípravy: 10-12 min.",
     price: 199,
     image:
       "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=300&h=200&fit=crop",
@@ -132,6 +161,7 @@ export const MENU_ITEMS = [
     category: "hlavni",
     name: "Hovězí steak",
     description: "Premium hovězí steak s grilovanými bramborami",
+    detailDescription: "Prémiový hovězí steak z mramorového masa (250g). Grilovaný podle přání s grilovanými bramborami, restovanou zeleninou a demi-glace omáčkou. Obsahuje: mléko. Čas přípravy: 18-25 min podle propečení.",
     price: 389,
     image:
       "https://images.unsplash.com/photo-1558030006-450675393462?w=300&h=200&fit=crop",
@@ -179,6 +209,7 @@ export const MENU_ITEMS = [
     category: "dezerty",
     name: "Tiramisu",
     description: "Klasický italský dezert s mascarpone",
+    detailDescription: "Autentické italské tiramisu s čerstvým mascarpone, silnou espresso kávou, savoiardi piškoty a kakao. Výroba trvá 24 hodin pro dokonalé prokreslení chutí. Obsahuje: lepek, mléko, vejce, alkohol (marsala). Hmotnost: 120g. Podáváno chlazené.",
     price: 99,
     image:
       "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=300&h=200&fit=crop",
@@ -188,6 +219,7 @@ export const MENU_ITEMS = [
     category: "dezerty",
     name: "Chocolate brownie",
     description: "Teplý brownie s vanilkovou zmrzlinou",
+    detailDescription: "Domácí čokoládový brownie pečený denně, bohatý na belgickou čokoládu a ořechy. Podáváno teplé s kuličkou prémiové vanilkové zmrzliny a čerstvými lesními plody. Obsahuje: lepek, mléko, vejce, ořechy. Hmotnost: 150g + 50g zmrzlina.",
     price: 109,
     image:
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=200&fit=crop",
@@ -244,6 +276,7 @@ export const MENU_ITEMS = [
     category: "napoje",
     name: "Coca Cola",
     description: "Osvěžující limonáda 0.33l",
+    detailDescription: "Originální Coca-Cola v skleněné lahvi nebo z automatu. Perfektně chlazená, s ledem a citronem na přání. Obsahuje kofein a cukr. Objem: 0,33l nebo 0,5l. Bez konzervantů. Možnost verze Zero nebo Light.",
     price: 45,
     image:
       "https://t3.ftcdn.net/jpg/07/29/63/02/360_F_729630262_7hAna5MDjwAd0vAmU3v25u2v3jBaZw8A.jpg",
@@ -252,6 +285,9 @@ export const MENU_ITEMS = [
     id: 11,
     category: "napoje",
     name: "Pivo Pilsner",
+    description: "Čerstvé točené pivo 0.5l",
+    detailDescription: "Český ležák Pilsner Urquell z tankového piva. Čerstvě načepováno s dokonalou pěnou. Alkohol: 4,4%. Objem: 0,3l nebo 0,5l. Podáváno v chlazené sklenici při teplotě 6-8°C. Ke konzumaci pouze osobám starším 18 let.",
+    price: 59,
     description: "Čerstvé točené pivo 0.5l",
     price: 55,
     image:

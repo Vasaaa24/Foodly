@@ -109,6 +109,30 @@
   font-size: 16px;
 }
 
+.product-detailed-description {
+  background: linear-gradient(135deg, #fff8f0 0%, #fff0e6 100%);
+  border: 2px solid #ffe6d9;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.product-detailed-description h4 {
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-detailed-description p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
 .product-base-price {
   color: #d32f2f;
   font-size: 22px;
@@ -427,6 +451,19 @@
 
   .product-description {
     font-size: 15px;
+  }
+
+  .product-detailed-description {
+    padding: 12px;
+    margin: 12px 0;
+  }
+
+  .product-detailed-description h4 {
+    font-size: 13px;
+  }
+
+  .product-detailed-description p {
+    font-size: 13px;
   }
 
   .product-base-price {
