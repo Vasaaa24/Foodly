@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 
 // Cart Context
 const CartContext = createContext();
@@ -70,9 +70,22 @@ const initialState = {
   selectedTable: null,
 };
 
-// Cart Provider Component
+// CartProvider component
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  // Automatické nastavení stolu z URL parametru
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tableFromUrl = urlParams.get('table');
+    
+    if (tableFromUrl && !state.selectedTable) {
+      dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(tableFromUrl) });
+      // Odstraníme parametr z URL aby nebyl viditelný
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [state.selectedTable]);
 
   // Actions
   const addItem = (item) => {

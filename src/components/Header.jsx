@@ -16,6 +16,9 @@ const Header = () => {
         </div>
 
         <div className="header-right">
+          <Link to="/qr-generator" className="qr-link" title="QR kódy">
+            📱
+          </Link>
           <Link to="/cart" className="cart-icon">
             🛒
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}

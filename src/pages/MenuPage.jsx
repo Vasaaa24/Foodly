@@ -10,7 +10,7 @@ const MenuPage = () => {
   const [animationState, setAnimationState] = useState("idle"); // idle, changing, entering
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showProductDetail, setShowProductDetail] = useState(false);
-  const { addItem } = useCart();
+  const { addItem, selectedTable } = useCart();
 
   const filteredItems = MENU_ITEMS.filter((item) => {
     const matchesCategory = item.category === selectedCategory;
@@ -76,6 +76,16 @@ const MenuPage = () => {
           />
         </div>
       </div>
+
+      {/* Zobrazení čísla stolu */}
+      {selectedTable && (
+        <div className="table-info">
+          <div className="table-number-display">
+            <span className="table-icon">🪑</span>
+            <span className="table-text">Stůl č. {selectedTable}</span>
+          </div>
+        </div>
+      )}
 
       {/* Kategorie tabs */}
       <div className="category-tabs">

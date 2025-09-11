@@ -3,12 +3,9 @@ import { useCart } from "../context/CartContext";
 import CartItem from "../components/CartItem";
 
 const CartPage = () => {
-  const { items, totalPrice, totalItems, clearCart, selectedTable, setTable } =
+  const { items, totalPrice, totalItems, clearCart, selectedTable } =
     useCart();
   const navigate = useNavigate();
-
-  // Generuj čísla stolů (1-20)
-  const tableNumbers = Array.from({ length: 20 }, (_, i) => i + 1);
 
   if (items.length === 0) {
     return (
@@ -45,28 +42,6 @@ const CartPage = () => {
       </div>
 
       <div className="cart-summary">
-        <div className="table-selection">
-          <h3>Vyberte stůl</h3>
-          <div className="table-grid">
-            {tableNumbers.map((tableNum) => (
-              <button
-                key={tableNum}
-                className={`table-btn ${
-                  selectedTable === tableNum ? "selected" : ""
-                }`}
-                onClick={() => setTable(tableNum)}
-              >
-                {tableNum}
-              </button>
-            ))}
-          </div>
-          {!selectedTable && (
-            <p className="table-warning">
-              ⚠️ Prosím vyberte stůl pro dokončení objednávky
-            </p>
-          )}
-        </div>
-
         <div className="total-section">
           <div className="total-line">
             <span>Celkem ({totalItems} položek):</span>
