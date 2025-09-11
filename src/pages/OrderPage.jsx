@@ -10,7 +10,12 @@ const OrderPage = () => {
 
   // Získání dat z navigace (payment method, items, total, selectedTable)
   const orderData = location.state || {};
-  const { paymentMethod, items = [], total = totalPrice, selectedTable } = orderData;
+  const {
+    paymentMethod,
+    items = [],
+    total = totalPrice,
+    selectedTable,
+  } = orderData;
 
   // Mapování platebních metod pro zobrazení
   const paymentMethodNames = {

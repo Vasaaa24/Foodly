@@ -10,7 +10,7 @@ import IntroScreen from "./components/IntroScreen";
 import "./App.css";
 
 function App() {
-  const [showIntro, setShowIntro] = useState(false); // Dočasně vypnutý intro
+  const [showIntro, setShowIntro] = useState(true);
 
   const handleIntroComplete = () => {
     setShowIntro(false);

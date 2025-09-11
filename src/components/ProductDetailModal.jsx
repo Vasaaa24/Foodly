@@ -9,92 +9,103 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
   // Definice možných variant pro různé typy jídel
   const getProductOptions = (product) => {
     if (!product || !product.name) return {};
-    
+
     const options = {};
     const productName = product.name.toLowerCase();
 
     // Pokud je to maso/hlavní chod
-    if (productName.includes('kuře') || 
-        productName.includes('vepř') || 
-        productName.includes('hovězí') ||
-        productName.includes('steak') ||
-        productName.includes('řízek')) {
+    if (
+      productName.includes("kuře") ||
+      productName.includes("vepř") ||
+      productName.includes("hovězí") ||
+      productName.includes("steak") ||
+      productName.includes("řízek")
+    ) {
       options.meat = {
         label: "Typ masa",
         required: true,
-        choices: ["Kuřecí", "Vepřové", "Hovězí", "Krůtí"]
+        choices: ["Kuřecí", "Vepřové", "Hovězí", "Krůtí"],
       };
       options.preparation = {
         label: "Způsob přípravy",
         required: true,
-        choices: ["Grilované", "Smažené", "Pečené", "Na pánvi"]
+        choices: ["Grilované", "Smažené", "Pečené", "Na pánvi"],
       };
     }
 
     // Pokud je to pizza nebo jídlo s možností pálivosti
-    if (productName.includes('pizza') || 
-        productName.includes('mexick') ||
-        productName.includes('curry') ||
-        productName.includes('chili')) {
+    if (
+      productName.includes("pizza") ||
+      productName.includes("mexick") ||
+      productName.includes("curry") ||
+      productName.includes("chili")
+    ) {
       options.spicy = {
         label: "Pálivost",
         required: true,
-        choices: ["Nepalivo", "Mírně palivo", "Středně palivo", "Hodně palivo"]
+        choices: ["Nepalivo", "Mírně palivo", "Středně palivo", "Hodně palivo"],
       };
     }
 
     // Pokud je to pizza
-    if (productName.includes('pizza')) {
+    if (productName.includes("pizza")) {
       options.size = {
         label: "Velikost",
         required: true,
-        choices: ["Malá (24cm)", "Střední (30cm)", "Velká (36cm)"]
+        choices: ["Malá (24cm)", "Střední (30cm)", "Velká (36cm)"],
       };
       options.crust = {
         label: "Těsto",
         required: false,
-        choices: ["Klasické", "Tenké", "Silné", "Celozrnné"]
+        choices: ["Klasické", "Tenké", "Silné", "Celozrnné"],
       };
     }
 
     // Pokud je to nápoj
-    if (productName.includes('nápoj') || 
-        productName.includes('cola') ||
-        productName.includes('pivo') ||
-        productName.includes('víno')) {
+    if (
+      productName.includes("nápoj") ||
+      productName.includes("cola") ||
+      productName.includes("pivo") ||
+      productName.includes("víno")
+    ) {
       options.size = {
         label: "Velikost",
         required: true,
-        choices: ["0,33l", "0,5l", "1l"]
+        choices: ["0,33l", "0,5l", "1l"],
       };
     }
 
     // Pokud je to káva
-    if (productName.includes('káva') || 
-        productName.includes('coffee')) {
+    if (productName.includes("káva") || productName.includes("coffee")) {
       options.milk = {
         label: "Mléko",
         required: false,
-        choices: ["Bez mléka", "Klasické mléko", "Sójové mléko", "Ovesné mléko", "Kokosové mléko"]
+        choices: [
+          "Bez mléka",
+          "Klasické mléko",
+          "Sójové mléko",
+          "Ovesné mléko",
+          "Kokosové mléko",
+        ],
       };
       options.sugar = {
         label: "Sladidlo",
         required: false,
-        choices: ["Bez sladidla", "Cukr", "Med", "Stévie"]
+        choices: ["Bez sladidla", "Cukr", "Med", "Stévie"],
       };
     }
 
     // Pokud je to salát
-    if (productName.includes('salát')) {
+    if (productName.includes("salát")) {
       options.dressing = {
         label: "Dresink",
         required: true,
-        choices: ["Vinaigrette", "Caesar", "Ranch", "Balsamic", "Olivový olej"]
+        choices: ["Vinaigrette", "Caesar", "Ranch", "Balsamic", "Olivový olej"],
       };
       options.protein = {
         label: "Přidat protein",
         required: false,
-        choices: ["Žádný", "Kuřecí maso", "Tuňák", "Sýr feta", "Mozzarella"]
+        choices: ["Žádný", "Kuřecí maso", "Tuňák", "Sýr feta", "Mozzarella"],
       };
     }
 
@@ -106,7 +117,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
   const handleOptionChange = (optionKey, value) => {
     setSelectedOptions({
       ...selectedOptions,
-      [optionKey]: value
+      [optionKey]: value,
     });
   };
 
@@ -122,15 +133,21 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
 
   const calculateTotalPrice = () => {
     if (!product || !product.price) return "0.00";
-    
+
     let basePrice = product.price;
     let multiplier = 1;
 
     // Úprava ceny podle velikosti
     if (selectedOptions.size) {
-      if (selectedOptions.size.includes("Střední") || selectedOptions.size.includes("0,5l")) {
+      if (
+        selectedOptions.size.includes("Střední") ||
+        selectedOptions.size.includes("0,5l")
+      ) {
         multiplier = 1.3;
-      } else if (selectedOptions.size.includes("Velká") || selectedOptions.size.includes("1l")) {
+      } else if (
+        selectedOptions.size.includes("Velká") ||
+        selectedOptions.size.includes("1l")
+      ) {
         multiplier = 1.6;
       }
     }
@@ -140,7 +157,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    
+
     if (!validateSelection()) {
       alert("Prosím vyplňte všechny povinné volby");
       return;
@@ -153,12 +170,12 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
       selectedOptions,
       comment: comment.trim(),
       quantity,
-      price: parseFloat(calculateTotalPrice()) / quantity // Cena za kus
+      price: parseFloat(calculateTotalPrice()) / quantity, // Cena za kus
     };
 
     onAddToCart(productToAdd);
     onClose();
-    
+
     // Reset formuláře
     setSelectedOptions({});
     setComment("");
@@ -169,21 +186,28 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
 
   return (
     <div className="product-modal-overlay" onClick={onClose}>
-      <div className="product-modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="product-modal-content"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className="product-modal-close" onClick={onClose}>
           ×
         </button>
 
         <div className="product-modal-header">
-          <img 
-            src={product?.image || "/placeholder-food.jpg"} 
+          <img
+            src={product?.image || "/placeholder-food.jpg"}
             alt={product?.name || "Produkt"}
             className="product-modal-image"
           />
           <div className="product-modal-info">
             <h2>{product?.name || "Neuvedeno"}</h2>
-            <p className="product-description">{product?.description || "Popis není k dispozici"}</p>
-            <p className="product-base-price">Základní cena: {product?.price || 0} Kč</p>
+            <p className="product-description">
+              {product?.description || "Popis není k dispozici"}
+            </p>
+            <p className="product-base-price">
+              Základní cena: {product?.price || 0} Kč
+            </p>
           </div>
         </div>
 
@@ -191,13 +215,16 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
           {Object.entries(productOptions).map(([key, option]) => (
             <div key={key} className="option-group">
               <label className="option-label">
-                {option.label} {option.required && <span className="required">*</span>}
+                {option.label}{" "}
+                {option.required && <span className="required">*</span>}
               </label>
               <div className="option-choices">
                 {option.choices.map((choice) => (
                   <button
                     key={choice}
-                    className={`option-choice ${selectedOptions[key] === choice ? 'selected' : ''}`}
+                    className={`option-choice ${
+                      selectedOptions[key] === choice ? "selected" : ""
+                    }`}
                     onClick={() => handleOptionChange(key, choice)}
                   >
                     {choice}
@@ -222,7 +249,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
           <div className="quantity-section">
             <label className="option-label">Množství</label>
             <div className="quantity-controls">
-              <button 
+              <button
                 className="quantity-btn"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 disabled={quantity <= 1}
@@ -230,7 +257,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
                 -
               </button>
               <span className="quantity-display">{quantity}</span>
-              <button 
+              <button
                 className="quantity-btn"
                 onClick={() => setQuantity(quantity + 1)}
               >
@@ -248,7 +275,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
             <button className="btn-cancel" onClick={onClose}>
               Zrušit
             </button>
-            <button 
+            <button
               className="btn-add-to-cart"
               onClick={handleAddToCart}
               disabled={!validateSelection()}

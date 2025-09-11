@@ -3,7 +3,8 @@ import { useCart } from "../context/CartContext";
 import CartItem from "../components/CartItem";
 
 const CartPage = () => {
-  const { items, totalPrice, totalItems, clearCart, selectedTable, setTable } = useCart();
+  const { items, totalPrice, totalItems, clearCart, selectedTable, setTable } =
+    useCart();
   const navigate = useNavigate();
 
   // Generuj čísla stolů (1-20)
@@ -50,7 +51,9 @@ const CartPage = () => {
             {tableNumbers.map((tableNum) => (
               <button
                 key={tableNum}
-                className={`table-btn ${selectedTable === tableNum ? 'selected' : ''}`}
+                className={`table-btn ${
+                  selectedTable === tableNum ? "selected" : ""
+                }`}
                 onClick={() => setTable(tableNum)}
               >
                 {tableNum}
@@ -58,7 +61,9 @@ const CartPage = () => {
             ))}
           </div>
           {!selectedTable && (
-            <p className="table-warning">⚠️ Prosím vyberte stůl pro dokončení objednávky</p>
+            <p className="table-warning">
+              ⚠️ Prosím vyberte stůl pro dokončení objednávky
+            </p>
           )}
         </div>
 

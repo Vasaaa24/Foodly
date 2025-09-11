@@ -14,7 +14,7 @@ const BottomBar = () => {
 
   const handleActionClick = () => {
     if (totalItems === 0) return;
-    
+
     if (isCartPage) {
       // Na stránce košíku zkontroluj, zda je vybrán stůl, pak otevři platební modal
       if (!selectedTable) {

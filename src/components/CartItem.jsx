@@ -12,7 +12,10 @@ const CartItem = ({ item }) => {
   };
 
   const renderSelectedOptions = () => {
-    if (!item.selectedOptions || Object.keys(item.selectedOptions).length === 0) {
+    if (
+      !item.selectedOptions ||
+      Object.keys(item.selectedOptions).length === 0
+    ) {
       return null;
     }
 
@@ -32,11 +35,7 @@ const CartItem = ({ item }) => {
       return null;
     }
 
-    return (
-      <div className="cart-item-comment">
-        💬 {item.comment}
-      </div>
-    );
+    return <div className="cart-item-comment">💬 {item.comment}</div>;
   };
 
   return (

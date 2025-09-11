@@ -14,8 +14,7 @@ export const MENU_ITEMS = [
     name: "Česnekový chléb",
     description: "Domácí chléb s česnekovým máslem a bylinkami",
     price: 89,
-    image:
-      "https://www.nejrecept.cz/upload/82229975_63ba87fab48e45_full.jpg",
+    image: "https://www.nejrecept.cz/upload/82229975_63ba87fab48e45_full.jpg",
   },
   {
     id: 2,
@@ -95,7 +94,8 @@ export const MENU_ITEMS = [
     id: 5,
     category: "hlavni",
     name: "Pizza Margherita",
-    description: "Rajčatová omáčka, mozzarella, bazalka - výběr velikosti a těsta",
+    description:
+      "Rajčatová omáčka, mozzarella, bazalka - výběr velikosti a těsta",
     price: 189,
     image:
       "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=300&h=200&fit=crop",

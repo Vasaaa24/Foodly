@@ -21,12 +21,10 @@ const cartReducer = (state, action) => {
       );
 
       if (existingItemIndex >= 0) {
-        
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex].qty += 1;
         return { ...state, items: updatedItems };
       } else {
-      
         return {
           ...state,
           items: [...state.items, { ...action.payload, qty: 1 }],

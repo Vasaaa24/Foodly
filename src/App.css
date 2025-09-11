@@ -640,7 +640,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.4rem;
   }
-  
+
   .table-btn {
     padding: 0.6rem;
     font-size: 0.9rem;
