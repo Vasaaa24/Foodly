@@ -1,7 +1,7 @@
 import QRCode from 'react-qr-code';
 import './QRCodeComponent.css';
 
-const QRCodeComponent = ({ url = "https://foodly-opal.vercel.app/", tableNumber = null }) => {
+const QRCodeComponent = ({ url = "https://foodly-opalss.vercel.app/", tableNumber = null }) => {
   // Přidáme číslo stolu do URL jako query parametr
   const finalUrl = tableNumber ? `${url}?table=${tableNumber}` : url;
   

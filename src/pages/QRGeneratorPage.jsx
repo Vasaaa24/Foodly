@@ -30,7 +30,7 @@ const QRGeneratorPage = () => {
     <div className="qr-generator-page">
       <div className="qr-generator-header no-print">
         <h1>QR kódy pro stoly</h1>
-        <p>Vyberte stoly pro které chcete vygenerovat QR kódy</p>
+        <p>Klikněte na čísla stolů pro výběr. Každý stůl má svůj vlastní QR kód.</p>
         
         <div className="controls">
           <button onClick={handleSelectAll} className="select-all-btn">
@@ -38,9 +38,14 @@ const QRGeneratorPage = () => {
           </button>
           
           {selectedTables.length > 0 && (
-            <button onClick={handlePrint} className="print-btn">
-              🖨️ Tisknout ({selectedTables.length} stolů)
-            </button>
+            <>
+              <span className="selection-info">
+                Vybráno: {selectedTables.length} {selectedTables.length === 1 ? 'stůl' : 'stolů'}
+              </span>
+              <button onClick={handlePrint} className="print-btn">
+                🖨️ Tisknout vybrané QR kódy
+              </button>
+            </>
           )}
         </div>
 
@@ -60,14 +65,16 @@ const QRGeneratorPage = () => {
       <div className="qr-codes-container">
         {selectedTables.length === 0 && (
           <div className="no-selection no-print">
-            <p>Vyberte stoly pro generování QR kódů</p>
+            <h3>👆 Vyberte stoly výše</h3>
+            <p>Klikněte na čísla stolů pro které chcete vygenerovat QR kódy.</p>
+            <p>Každý stůl bude mít svůj vlastní QR kód s automatickým přiřazením.</p>
           </div>
         )}
 
         {selectedTables.map(tableNum => (
           <div key={tableNum} className="qr-code-page">
             <QRCodeComponent 
-              url="https://foodly-opal.vercel.app/"
+              url="https://foodly-opalss.vercel.app/"
               tableNumber={tableNum}
             />
           </div>

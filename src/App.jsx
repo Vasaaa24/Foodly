@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import Header from "./components/Header";
 import BottomBar from "./components/BottomBar";
@@ -9,6 +9,28 @@ import OrderPage from "./pages/OrderPage";
 import QRGeneratorPage from "./pages/QRGeneratorPage";
 import IntroScreen from "./components/IntroScreen";
 import "./App.css";
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminPage = location.pathname === '/qr-generator';
+
+  return (
+    <div className="app">
+      <Header />
+
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<MenuPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/order/:id" element={<OrderPage />} />
+          <Route path="/qr-generator" element={<QRGeneratorPage />} />
+        </Routes>
+      </main>
+
+      {!isAdminPage && <BottomBar />}
+    </div>
+  );
+}
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -24,20 +46,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
-        <div className="app">
-          <Header />
-
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<MenuPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/order/:id" element={<OrderPage />} />
-              <Route path="/qr-generator" element={<QRGeneratorPage />} />
-            </Routes>
-          </main>
-
-          <BottomBar />
-        </div>
+        <AppContent />
       </Router>
     </CartProvider>
   );

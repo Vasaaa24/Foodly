@@ -25,8 +25,19 @@
 .controls {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.selection-info {
+  background: #e9ecef;
+  color: #495057;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .select-all-btn,
@@ -92,7 +103,21 @@
   text-align: center;
   padding: 3rem;
   color: #666;
-  font-size: 1.2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.no-selection h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.no-selection p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
 .qr-codes-container {
