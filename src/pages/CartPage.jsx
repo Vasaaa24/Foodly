@@ -78,9 +78,6 @@ const CartPage = () => {
           >
             Pokračovat v nakupování
           </button>
-          <button className="order-btn" onClick={handleOrder}>
-            Objednat za {totalPrice.toFixed(2)} Kč
-          </button>
         </div>
       </div>
 
