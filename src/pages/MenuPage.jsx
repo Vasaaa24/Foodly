@@ -81,8 +81,8 @@ const MenuPage = () => {
       {selectedTable && (
         <div className="table-info">
           <div className="table-number-display">
-            <span className="table-icon">🪑</span>
-            <span className="table-text">Stůl č. {selectedTable}</span>
+            <span className="table-icon">🍴</span>
+            <span className="table-text">Stůl {selectedTable}</span>
           </div>
         </div>
       )}
