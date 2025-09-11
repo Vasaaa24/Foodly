@@ -7,7 +7,7 @@ export const MENU_CATEGORIES = [
 ];
 
 export const MENU_ITEMS = [
-  /  // Nápoje
+ 
   {
     id: 10,
     category: "napoje",
