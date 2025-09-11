@@ -1412,6 +1412,25 @@ body {
   font-weight: 700;
   color: #e53e3e;
   font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.timer-display.time-expired {
+  color: #dc2626;
+  animation: pulse 1s infinite;
+}
+
+.time-expired-message {
+  margin-top: 0.5rem;
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 .cash-payment-actions {
@@ -1431,11 +1450,19 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .call-waiter-btn:hover {
   background: #c53030;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+.call-waiter-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(229, 62, 62, 0.3);
 }
 
 .card-payment-option {
@@ -1458,6 +1485,12 @@ body {
   border-color: #a78bfa;
   background: #f7fafc;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.15);
+}
+
+.card-payment-option:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(167, 139, 250, 0.15);
 }
 
 .card-payment-subtitle {

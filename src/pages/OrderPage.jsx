@@ -42,6 +42,10 @@ const OrderPage = () => {
         setTimeRemaining(prev => {
           if (prev <= 1) {
             clearInterval(timer);
+            // Upozornění když čas vyprší
+            setTimeout(() => {
+              alert("⏰ Čas pro potvrzení objednávky vypršel. Prosím zavolejte obsluhu nebo zaplaťte kartou.");
+            }, 100);
             return 0;
           }
           return prev - 1;
@@ -64,13 +68,26 @@ const OrderPage = () => {
   };
 
   const handleCallWaiter = () => {
-    // Můžete přidat logiku pro volání obsluhy (např. notifikace, API call)
-    alert("Obsluha byla zavolána a přijde k vašemu stolu!");
+    // Simulace volání obsluhy - můžete přidat real-time notifikaci
+    if (confirm("Zavolat obsluhu k vašemu stolu?")) {
+      alert("✅ Obsluha byla upozorněna a přijde k vašemu stolu!");
+      // Zde by mohla být logika pro odeslání notifikace obsluze
+      // např. API call, WebSocket notifikace, atd.
+    }
   };
 
   const handleCardPayment = () => {
-    // Přesměrování zpět na platební formulář s kartou
-    navigate("/cart");
+    // Návrat do košíku s možností změnit platební metodu
+    if (confirm("Chcete zaplatit kartou namísto hotovosti? Objednávka půjde ihned do kuchyně.")) {
+      navigate("/cart", { 
+        state: { 
+          returnFromCash: true,
+          orderId: id,
+          items: items,
+          total: total
+        }
+      });
+    }
   };
 
   // Speciální rozhraní pro hotovostní platby
@@ -78,28 +95,35 @@ const OrderPage = () => {
     return (
       <div className="order-page cash-payment-page">
         <div className="cash-order-confirmation">
-          <h1>Order created. For cash payment please call a waiter to confirm.</h1>
+          <h1>Objednávka vytvořena. Pro platbu hotovostí zavolejte obsluhu pro potvrzení.</h1>
           
           <div className="cash-payment-layout">
             <div className="table-info-large">
-              <div className="table-label">Table:</div>
+              <div className="table-label">Stůl:</div>
               <div className="table-number-large">{selectedTable || "?"}</div>
             </div>
           </div>
 
           <div className="order-timer">
-            <span>Order waiting for confirmation: </span>
-            <span className="timer-display">{formatTime(timeRemaining)}</span>
+            <span>Objednávka čeká na potvrzení: </span>
+            <span className={`timer-display ${timeRemaining === 0 ? 'time-expired' : ''}`}>
+              {formatTime(timeRemaining)}
+            </span>
+            {timeRemaining === 0 && (
+              <div className="time-expired-message">
+                ⚠️ Čas vypršel - prosím zavolejte obsluhu
+              </div>
+            )}
           </div>
 
           <div className="cash-payment-actions">
             <button className="call-waiter-btn" onClick={handleCallWaiter}>
-              Call a waiter for confirmation
+              Zavolat obsluhu pro potvrzení
             </button>
             
             <button className="card-payment-option" onClick={handleCardPayment}>
-              Pay by card / Apple Pay
-              <span className="card-payment-subtitle">(send to kitchen immediately)</span>
+              Zaplatit kartou / Apple Pay
+              <span className="card-payment-subtitle">(poslat do kuchyně okamžitě)</span>
             </button>
           </div>
         </div>
