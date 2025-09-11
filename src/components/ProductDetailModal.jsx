@@ -182,14 +182,21 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
     setQuantity(1);
   };
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen || !product) return null;
 
   return (
-    <div className="product-modal-overlay" onClick={onClose}>
+    <div className="product-modal-overlay" onClick={handleOverlayClick}>
       <div
         className="product-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="modal-drag-handle"></div>
         <button className="product-modal-close" onClick={onClose}>
           ×
         </button>
