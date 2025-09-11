@@ -218,9 +218,6 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
                 <p>{product.detailDescription}</p>
               </div>
             )}
-            <p className="product-base-price">
-              Základní cena: {product?.price || 0} Kč
-            </p>
           </div>
         </div>
 
