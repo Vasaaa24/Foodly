@@ -14,13 +14,14 @@ const BottomBar = () => {
     }
   };
 
-  const handlePaymentConfirm = (paymentMethod) => {
+  const handlePaymentConfirm = (paymentMethod, paymentData) => {
     // Generuj náhodné ID objednávky
     const orderId = Math.floor(Math.random() * 10000);
     // Přesměruj na stránku objednávky s informací o platbě
     navigate(`/order/${orderId}`, {
       state: {
         paymentMethod,
+        paymentData,
         items: [...items],
         total: totalPrice,
       },
