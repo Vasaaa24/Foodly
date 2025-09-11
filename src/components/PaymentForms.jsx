@@ -329,11 +329,27 @@ export const BankTransferForm = ({ onSubmit, onCancel, total }) => {
 
 // Hotovost
 export const CashPaymentForm = ({ onSubmit, onCancel, total }) => {
+  const [customerName, setCustomerName] = useState("");
+  const [error, setError] = useState("");
+
   const handleCashPayment = () => {
+    if (!customerName.trim()) {
+      setError("Prosím zadejte vaše jméno");
+      return;
+    }
+    
     onSubmit({
       method: "cash",
       amount: total,
+      customerName: customerName.trim(),
     });
+  };
+
+  const handleNameChange = (e) => {
+    setCustomerName(e.target.value);
+    if (error) {
+      setError("");
+    }
   };
 
   return (
@@ -344,9 +360,24 @@ export const CashPaymentForm = ({ onSubmit, onCancel, total }) => {
         <div className="payment-amount">
           <strong>{total} Kč</strong>
         </div>
-        <div className="cash-note">
-          <p>💡 Tip: Připravte si prosím přesnou částku</p>
-        </div>
+      </div>
+
+      <div className="form-group">
+        <label>Vaše jméno *</label>
+        <input
+          type="text"
+          value={customerName}
+          onChange={handleNameChange}
+          placeholder="Jan Novák"
+          className={error ? "error" : ""}
+          required
+        />
+        {error && <span className="error-text">{error}</span>}
+      </div>
+
+      <div className="cash-note">
+        <p>ℹ️ Obsluha vás najde podle jména a čísla stolu</p>
+        <p>💡 Tip: Připravte si prosím přesnou částku</p>
       </div>
 
       <div className="form-actions">
@@ -354,7 +385,7 @@ export const CashPaymentForm = ({ onSubmit, onCancel, total }) => {
           Zrušit
         </button>
         <button onClick={handleCashPayment} className="btn-cash">
-          💵 Potvrdit hotovost
+          💵 Potvrdit objednávku
         </button>
       </div>
     </div>

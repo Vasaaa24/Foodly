@@ -8,13 +8,14 @@ const OrderPage = () => {
   const navigate = useNavigate();
   const { totalPrice, clearCart } = useCart();
 
-  // Získání dat z navigace (payment method, items, total, selectedTable)
+  // Získání dat z navigace (payment method, items, total, selectedTable, paymentData)
   const orderData = location.state || {};
   const {
     paymentMethod,
     items = [],
     total = totalPrice,
     selectedTable,
+    paymentData = {},
   } = orderData;
 
   // Mapování platebních metod pro zobrazení
@@ -71,6 +72,13 @@ const OrderPage = () => {
               </div>
             )}
 
+            {paymentMethod === "cash" && paymentData.customerName && (
+              <div className="order-detail-row">
+                <span className="label">Jméno zákazníka:</span>
+                <span className="value">{paymentData.customerName}</span>
+              </div>
+            )}
+
             <div className="order-detail-row total">
               <span className="label">Celková cena:</span>
               <span className="value">
@@ -81,11 +89,22 @@ const OrderPage = () => {
 
           <div className="order-status-info">
             <h4>Co bude dál?</h4>
-            <ul>
-              <li>✓ Vaše objednávka byla přijata</li>
-              <li>🔄 Kuchyň začne s přípravou</li>
-              <li>🚚 Jídlo bude doručeno na váš stůl</li>
-            </ul>
+            {paymentMethod === "cash" ? (
+              <ul>
+                <li>✓ Vaše objednávka byla přijata</li>
+                <li>👨‍💼 Obsluha k vám přijde pro potvrzení</li>
+                <li>🔄 Kuchyň začne s přípravou po potvrzení</li>
+                <li>🚚 Jídlo bude doručeno na váš stůl</li>
+                <li>💵 Zaplatíte při převzetí</li>
+              </ul>
+            ) : (
+              <ul>
+                <li>✓ Vaše objednávka byla přijata</li>
+                <li>✓ Platba byla zpracována</li>
+                <li>🔄 Kuchyň začne s přípravou</li>
+                <li>🚚 Jídlo bude doručeno na váš stůl</li>
+              </ul>
+            )}
           </div>
         </div>
 

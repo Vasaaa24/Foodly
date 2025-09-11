@@ -7,24 +7,8 @@ export const MENU_CATEGORIES = [
 ];
 
 export const MENU_ITEMS = [
- 
+  // Předkrmy
   {
-    id: 10,
-    category: "napoje",
-    name: "Coca Cola",
-    description: "Osvěžující limonáda 0.33l",
-    detailDescription: "Originální Coca-Cola v skleněné lahvi nebo z automatu. Perfektně chlazená, s ledem a citronem na přání. Obsahuje kofein a cukr. Objem: 0,33l nebo 0,5l. Bez konzervantů. Možnost verze Zero nebo Light.",
-    price: 45,
-    image:
-      "https://t3.ftcdn.net/jpg/07/29/63/02/360_F_729630262_7hAna5MDjwAd0vAmU3v25u2v3jBaZw8A.jpg",
-  },
-  {
-    id: 11,
-    category: "napoje",
-    name: "Pivo Pilsner",
-    description: "Čerstvé točené pivo 0.5l",
-    detailDescription: "Český ležák Pilsner Urquell z tankového piva. Čerstvě načepováno s dokonalou pěnou. Alkohol: 4,4%. Objem: 0,3l nebo 0,5l. Podáváno v chlazené sklenici při teplotě 6-8°C. Ke konzumaci pouze osobám starším 18 let.",
-    price: 59,
     id: 15,
     category: "predkrmy",
     name: "Carpaccio z hovězího",
@@ -288,8 +272,6 @@ export const MENU_ITEMS = [
     description: "Čerstvé točené pivo 0.5l",
     detailDescription: "Český ležák Pilsner Urquell z tankového piva. Čerstvě načepováno s dokonalou pěnou. Alkohol: 4,4%. Objem: 0,3l nebo 0,5l. Podáváno v chlazené sklenici při teplotě 6-8°C. Ke konzumaci pouze osobám starším 18 let.",
     price: 59,
-    description: "Čerstvé točené pivo 0.5l",
-    price: 55,
     image:
       "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=300&h=200&fit=crop",
   },
