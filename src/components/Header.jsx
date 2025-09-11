@@ -1,67 +1,47 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Header = () => {
-  const { totalItems, isQRCustomer } = useCart();
+  const { totalItems } = useCart();
   const location = useLocation();
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [adminPassword, setAdminPassword] = useState("");
+  const navigate = useNavigate();
+  const [keySequence, setKeySequence] = useState([]);
 
   // Kontrola, jestli jsme na admin stránce
-  const isAdminPage = location.pathname === '/qr-generator';
-  
-  // Skrýt burger menu pro zákazníky přicházející přes QR kód
-  const isQRUser = isQRCustomer();
+  const isAdminPage = location.pathname === '/qr-generator' || location.pathname === '/admin-panel-2024';
 
-  const toggleBurger = () => {
-    setIsBurgerOpen(!isBurgerOpen);
-    if (isBurgerOpen) {
-      setIsAdminMenuOpen(false);
-    }
-  };
+  // Skrytý přístup k administraci pomocí klávesové zkratky "admin"
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      const key = e.key.toLowerCase();
+      setKeySequence(prev => {
+        const newSequence = [...prev, key].slice(-5); // Keep only last 5 keys
+        
+        // Pokud uživatel napíše "admin", přesměruj na administraci
+        if (newSequence.join('') === 'admin') {
+          navigate('/qr-generator');
+          return [];
+        }
+        
+        return newSequence;
+      });
+    };
 
-  const handleAdminLogin = (e) => {
-    e.preventDefault();
-    // Jednoduchý admin login - heslo "admin123"
-    if (adminPassword === "admin123") {
-      setIsLoggedIn(true);
-      setIsAdminMenuOpen(true);
-      setAdminPassword("");
-    } else {
-      alert("Nesprávné heslo!");
-      setAdminPassword("");
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsAdminMenuOpen(false);
-    setIsBurgerOpen(false);
-  };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [navigate]);
 
   return (
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          {!isQRUser && (
-            <button 
-              className={`burger-menu ${isBurgerOpen ? 'open' : ''}`}
-              onClick={toggleBurger}
-              aria-label="Menu"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          )}
+          {/* Burger menu odstraněno - administrace je skrytá */}
         </div>
 
         <div className="header-center">
           <Link to="/" className="logo">
-            <h1>{(isAdminPage && !isQRUser) ? '⚙️ Administrace' : '🍽️ Foodly'}</h1>
+            <h1>{isAdminPage ? '⚙️ Administrace' : '🍽️ Foodly'}</h1>
           </Link>
         </div>
 
@@ -74,54 +54,6 @@ const Header = () => {
           )}
         </div>
       </div>
-
-      {/* Burger Menu Overlay - pouze pro ne-QR uživatele */}
-      {!isQRUser && (
-        <div className={`burger-overlay ${isBurgerOpen ? 'open' : ''}`}>
-          <div className="burger-content">
-            <div className="burger-header">
-              <h3>Menu</h3>
-              <button className="close-burger" onClick={toggleBurger}>✕</button>
-            </div>
-
-            <div className="burger-body">
-              {!isLoggedIn ? (
-                <div className="admin-login">
-                  <h4>Přihlášení do administrace</h4>
-                  <form onSubmit={handleAdminLogin}>
-                    <input
-                      type="password"
-                      placeholder="Zadejte heslo"
-                      value={adminPassword}
-                      onChange={(e) => setAdminPassword(e.target.value)}
-                      className="admin-password-input"
-                    />
-                    <button type="submit" className="admin-login-btn">
-                      Přihlásit se
-                    </button>
-                  </form>
-                </div>
-              ) : (
-                <div className="admin-menu">
-                  <h4>✅ Administrace</h4>
-                  <div className="admin-options">
-                    <Link 
-                      to="/qr-generator" 
-                      className="admin-option"
-                      onClick={() => setIsBurgerOpen(false)}
-                    >
-                      📱 Generování QR kódů
-                    </Link>
-                    <button className="admin-logout" onClick={handleLogout}>
-                      🚪 Odhlásit se
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 };

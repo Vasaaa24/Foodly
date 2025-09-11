@@ -1,12 +1,13 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const OrderPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { totalPrice, clearCart } = useCart();
+  const [timeRemaining, setTimeRemaining] = useState(300); // 5 minut = 300 sekund
 
   // Získání dat z navigace (payment method, items, total, selectedTable, paymentData)
   const orderData = location.state || {};
@@ -34,9 +35,77 @@ const OrderPage = () => {
     }
   }, [clearCart, items.length]);
 
+  // Časovač pro hotovostní platby
+  useEffect(() => {
+    if (paymentMethod === "cash") {
+      const timer = setInterval(() => {
+        setTimeRemaining(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [paymentMethod]);
+
+  // Formátování času MM:SS
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const handleBackToMenu = () => {
     navigate("/");
   };
+
+  const handleCallWaiter = () => {
+    // Můžete přidat logiku pro volání obsluhy (např. notifikace, API call)
+    alert("Obsluha byla zavolána a přijde k vašemu stolu!");
+  };
+
+  const handleCardPayment = () => {
+    // Přesměrování zpět na platební formulář s kartou
+    navigate("/cart");
+  };
+
+  // Speciální rozhraní pro hotovostní platby
+  if (paymentMethod === "cash") {
+    return (
+      <div className="order-page cash-payment-page">
+        <div className="cash-order-confirmation">
+          <h1>Order created. For cash payment please call a waiter to confirm.</h1>
+          
+          <div className="cash-payment-layout">
+            <div className="table-info-large">
+              <div className="table-label">Table:</div>
+              <div className="table-number-large">{selectedTable || "?"}</div>
+            </div>
+          </div>
+
+          <div className="order-timer">
+            <span>Order waiting for confirmation: </span>
+            <span className="timer-display">{formatTime(timeRemaining)}</span>
+          </div>
+
+          <div className="cash-payment-actions">
+            <button className="call-waiter-btn" onClick={handleCallWaiter}>
+              Call a waiter for confirmation
+            </button>
+            
+            <button className="card-payment-option" onClick={handleCardPayment}>
+              Pay by card / Apple Pay
+              <span className="card-payment-subtitle">(send to kitchen immediately)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="order-page">

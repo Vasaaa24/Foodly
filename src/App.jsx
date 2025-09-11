@@ -12,9 +12,7 @@ import "./App.css";
 
 function AppContent() {
   const location = useLocation();
-  const { isQRCustomer } = useCart();
-  const isAdminPage = location.pathname === '/qr-generator';
-  const isQRUser = isQRCustomer();
+  const isAdminPage = location.pathname === '/qr-generator' || location.pathname === '/admin-panel-2024';
 
   return (
     <div className="app">
@@ -25,17 +23,10 @@ function AppContent() {
           <Route path="/" element={<MenuPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order/:id" element={<OrderPage />} />
-          {/* Admin route je dostupná pouze pro ne-QR uživatele */}
-          {!isQRUser && (
-            <Route 
-              path="/qr-generator" 
-              element={<QRGeneratorPage />}
-            />
-          )}
-          {/* Fallback pro QR uživatele kteří se pokusí o admin přístup */}
-          {isQRUser && (
-            <Route path="/qr-generator" element={<Navigate to="/" replace />} />
-          )}
+          {/* Skrytá admin route - přístupná jen přímým odkazem */}
+          <Route path="/qr-generator" element={<QRGeneratorPage />} />
+          {/* Alternativní skrytá cesta k administraci */}
+          <Route path="/admin-panel-2024" element={<QRGeneratorPage />} />
         </Routes>
       </main>
 

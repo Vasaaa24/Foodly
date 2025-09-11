@@ -103,25 +103,6 @@ export const CartProvider = ({ children }) => {
     }
   }, [state.selectedTable]);
 
-  // Dodatečná ochrana - monitoring URL změn pro QR zákazníky
-  useEffect(() => {
-    if (isQRCustomer()) {
-      const handlePopState = (event) => {
-        const currentPath = window.location.pathname;
-        // Pokud se QR zákazník pokusí jít na admin stránku, přesměruj ho
-        if (currentPath === '/qr-generator') {
-          window.history.replaceState({}, '', '/');
-        }
-      };
-
-      window.addEventListener('popstate', handlePopState);
-      
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-      };
-    }
-  }, []);
-
   // Actions
   const addItem = (item) => {
     dispatch({ type: CART_ACTIONS.ADD_ITEM, payload: item });
