@@ -64,6 +64,16 @@ const MenuPage = () => {
 
   return (
     <div className="menu-page">
+      {/* Zobrazení čísla stolu */}
+      {selectedTable && (
+        <div className="table-info">
+          <div className="table-number-display">
+            <span className="table-icon">🍴</span>
+            <span className="table-text">Stůl {selectedTable}</span>
+          </div>
+        </div>
+      )}
+
       <div className="menu-header">
         {/* Vyhledávací pole */}
         <div className="search-container">
@@ -76,16 +86,6 @@ const MenuPage = () => {
           />
         </div>
       </div>
-
-      {/* Zobrazení čísla stolu */}
-      {selectedTable && (
-        <div className="table-info">
-          <div className="table-number-display">
-            <span className="table-icon">🍴</span>
-            <span className="table-text">Stůl {selectedTable}</span>
-          </div>
-        </div>
-      )}
 
       {/* Kategorie tabs */}
       <div className="category-tabs">
