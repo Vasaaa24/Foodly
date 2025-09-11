@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
 
 const BottomBar = () => {
-  const { totalItems, totalPrice, items, clearCart } = useCart();
+  const { totalItems, totalPrice, items, clearCart, selectedTable } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -16,7 +16,11 @@ const BottomBar = () => {
     if (totalItems === 0) return;
     
     if (isCartPage) {
-      // Na stránce košíku otevři platební modal
+      // Na stránce košíku zkontroluj, zda je vybrán stůl, pak otevři platební modal
+      if (!selectedTable) {
+        alert("Prosím vyberte stůl před dokončením objednávky!");
+        return;
+      }
       setShowPaymentModal(true);
     } else {
       // Na jiných stránkách přesměruj do košíku
@@ -34,6 +38,7 @@ const BottomBar = () => {
         paymentData,
         items: [...items],
         total: totalPrice,
+        selectedTable,
       },
     });
     clearCart();
@@ -53,7 +58,7 @@ const BottomBar = () => {
           <button
             className="bottom-order-btn"
             onClick={handleActionClick}
-            disabled={totalItems === 0}
+            disabled={totalItems === 0 || (isCartPage && !selectedTable)}
           >
             {isCartPage ? "Zaplatit" : "Objednat"}
           </button>

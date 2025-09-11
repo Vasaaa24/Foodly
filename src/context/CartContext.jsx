@@ -9,6 +9,7 @@ const CART_ACTIONS = {
   REMOVE_ITEM: "REMOVE_ITEM",
   UPDATE_QUANTITY: "UPDATE_QUANTITY",
   CLEAR_CART: "CLEAR_CART",
+  SET_TABLE: "SET_TABLE",
 };
 
 // Cart Reducer
@@ -53,7 +54,11 @@ const cartReducer = (state, action) => {
     }
 
     case CART_ACTIONS.CLEAR_CART: {
-      return { ...state, items: [] };
+      return { ...state, items: [], selectedTable: null };
+    }
+
+    case CART_ACTIONS.SET_TABLE: {
+      return { ...state, selectedTable: action.payload };
     }
 
     default:
@@ -64,6 +69,7 @@ const cartReducer = (state, action) => {
 // Initial State
 const initialState = {
   items: [],
+  selectedTable: null,
 };
 
 // Cart Provider Component
@@ -87,6 +93,10 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: CART_ACTIONS.CLEAR_CART });
   };
 
+  const setTable = (tableNumber) => {
+    dispatch({ type: CART_ACTIONS.SET_TABLE, payload: tableNumber });
+  };
+
   // Computed values
   const totalItems = state.items.reduce((total, item) => total + item.qty, 0);
   const totalPrice = state.items.reduce(
@@ -96,12 +106,14 @@ export const CartProvider = ({ children }) => {
 
   const value = {
     items: state.items,
+    selectedTable: state.selectedTable,
     totalItems,
     totalPrice,
     addItem,
     updateQuantity,
     removeItem,
     clearCart,
+    setTable,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

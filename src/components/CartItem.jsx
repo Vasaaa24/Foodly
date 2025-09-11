@@ -11,10 +11,40 @@ const CartItem = ({ item }) => {
     }
   };
 
+  const renderSelectedOptions = () => {
+    if (!item.selectedOptions || Object.keys(item.selectedOptions).length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="cart-item-options">
+        {Object.entries(item.selectedOptions).map(([key, value]) => (
+          <span key={key} className="option-tag">
+            {value}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
+  const renderComment = () => {
+    if (!item.comment || !item.comment.trim()) {
+      return null;
+    }
+
+    return (
+      <div className="cart-item-comment">
+        💬 {item.comment}
+      </div>
+    );
+  };
+
   return (
     <div className="cart-item">
       <div className="cart-item-info">
         <h4 className="cart-item-name">{item.name}</h4>
+        {renderSelectedOptions()}
+        {renderComment()}
         <span className="cart-item-price">{item.price} Kč</span>
       </div>
 

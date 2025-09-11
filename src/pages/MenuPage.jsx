@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { MENU_CATEGORIES, MENU_ITEMS } from "../data/menuData";
 import MenuItem from "../components/MenuItem";
+import ProductDetailModal from "../components/ProductDetailModal";
+import { useCart } from "../context/CartContext";
 
 const MenuPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("predkrmy");
   const [searchTerm, setSearchTerm] = useState("");
   const [animationState, setAnimationState] = useState("idle"); // idle, changing, entering
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showProductDetail, setShowProductDetail] = useState(false);
+  const { addItem } = useCart();
 
   const filteredItems = MENU_ITEMS.filter((item) => {
     const matchesCategory = item.category === selectedCategory;
@@ -14,6 +19,22 @@ const MenuPage = () => {
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const handleShowProductDetail = (product) => {
+    setSelectedProduct(product);
+    setShowProductDetail(true);
+  };
+
+  const handleCloseProductDetail = () => {
+    setShowProductDetail(false);
+    setSelectedProduct(null);
+  };
+
+  const handleAddToCart = (productWithOptions) => {
+    addItem(productWithOptions);
+    setShowProductDetail(false);
+    setSelectedProduct(null);
+  };
 
   const handleCategoryChange = (categoryId) => {
     if (categoryId !== selectedCategory) {
@@ -79,6 +100,7 @@ const MenuPage = () => {
               key={`${item.id}-${selectedCategory}`}
               item={item}
               index={index}
+              onShowDetail={handleShowProductDetail}
             />
           ))
         ) : (
@@ -87,6 +109,14 @@ const MenuPage = () => {
           </div>
         )}
       </div>
+
+      {/* Product Detail Modal */}
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={showProductDetail}
+        onClose={handleCloseProductDetail}
+        onAddToCart={handleAddToCart}
+      />
     </div>
   );
 };

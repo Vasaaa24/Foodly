@@ -8,13 +8,9 @@ const OrderPage = () => {
   const navigate = useNavigate();
   const { totalPrice, clearCart } = useCart();
 
-  // Získání dat z navigace (payment method, items, total)
+  // Získání dat z navigace (payment method, items, total, selectedTable)
   const orderData = location.state || {};
-  const { paymentMethod, items = [], total = totalPrice } = orderData;
-
-  // Získání ID stolku z URL parametru ?table=12
-  const urlParams = new URLSearchParams(location.search);
-  const tableId = urlParams.get("table") || "1";
+  const { paymentMethod, items = [], total = totalPrice, selectedTable } = orderData;
 
   // Mapování platebních metod pro zobrazení
   const paymentMethodNames = {
@@ -53,7 +49,7 @@ const OrderPage = () => {
 
             <div className="order-detail-row">
               <span className="label">Stůl č.:</span>
-              <span className="value">{tableId}</span>
+              <span className="value">{selectedTable || "Nevybráno"}</span>
             </div>
 
             <div className="order-detail-row">

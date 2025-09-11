@@ -21,7 +21,7 @@ export const MENU_ITEMS = [
     id: 2,
     category: "predkrmy",
     name: "Kuřecí křídélka",
-    description: "Pikantní kuřecí křídélka s BBQ omáčkou",
+    description: "Křupavá kuřecí křídélka s výběrem omáček a pálivosti",
     price: 159,
     image:
       "https://images.unsplash.com/photo-1608039755401-742074f0548d?w=300&h=200&fit=crop",
@@ -85,9 +85,9 @@ export const MENU_ITEMS = [
   {
     id: 4,
     category: "hlavni",
-    name: "Burger Classic",
-    description: "Hovězí kotleta, čedar, salát, rajče, cibule, okurka",
-    price: 249,
+    name: "Steak s přílohou",
+    description: "Šťavnatý steak z hovězího masa s výběrem přípravy a přílohy",
+    price: 349,
     image:
       "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=300&h=200&fit=crop",
   },
@@ -95,7 +95,7 @@ export const MENU_ITEMS = [
     id: 5,
     category: "hlavni",
     name: "Pizza Margherita",
-    description: "Rajčatová omáčka, mozzarella, bazalka",
+    description: "Rajčatová omáčka, mozzarella, bazalka - výběr velikosti a těsta",
     price: 189,
     image:
       "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=300&h=200&fit=crop",

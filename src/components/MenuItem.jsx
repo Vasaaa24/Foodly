@@ -1,16 +1,11 @@
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
 
-const MenuItem = ({ item }) => {
-  const { addItem } = useCart();
+const MenuItem = ({ item, onShowDetail }) => {
   const [imageError, setImageError] = useState(false);
 
-  const handleAddToCart = () => {
-    addItem({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-    });
+  const handleShowDetail = () => {
+    onShowDetail(item);
   };
 
   const handleImageError = () => {
@@ -40,7 +35,7 @@ const MenuItem = ({ item }) => {
 
         <div className="menu-item-footer">
           <span className="menu-item-price">{item.price} Kč</span>
-          <button className="add-to-cart-btn" onClick={handleAddToCart}>
+          <button className="add-to-cart-btn" onClick={handleShowDetail}>
             + Přidat
           </button>
         </div>
