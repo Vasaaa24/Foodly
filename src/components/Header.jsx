@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Header = () => {
-  const { totalItems } = useCart();
+  const { totalItems, selectedTable } = useCart();
   const location = useLocation();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(false);
@@ -12,6 +12,9 @@ const Header = () => {
 
   // Kontrola, jestli jsme na admin stránce
   const isAdminPage = location.pathname === '/qr-generator';
+  
+  // Skrýt burger menu pro zákazníky přicházející přes QR kód
+  const isQRCustomer = selectedTable !== null;
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);
@@ -43,15 +46,17 @@ const Header = () => {
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          <button 
-            className={`burger-menu ${isBurgerOpen ? 'open' : ''}`}
-            onClick={toggleBurger}
-            aria-label="Menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          {!isQRCustomer && (
+            <button 
+              className={`burger-menu ${isBurgerOpen ? 'open' : ''}`}
+              onClick={toggleBurger}
+              aria-label="Menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          )}
         </div>
 
         <div className="header-center">
@@ -70,51 +75,53 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Burger Menu Overlay */}
-      <div className={`burger-overlay ${isBurgerOpen ? 'open' : ''}`}>
-        <div className="burger-content">
-          <div className="burger-header">
-            <h3>Menu</h3>
-            <button className="close-burger" onClick={toggleBurger}>✕</button>
-          </div>
+      {/* Burger Menu Overlay - pouze pro ne-QR uživatele */}
+      {!isQRCustomer && (
+        <div className={`burger-overlay ${isBurgerOpen ? 'open' : ''}`}>
+          <div className="burger-content">
+            <div className="burger-header">
+              <h3>Menu</h3>
+              <button className="close-burger" onClick={toggleBurger}>✕</button>
+            </div>
 
-          <div className="burger-body">
-            {!isLoggedIn ? (
-              <div className="admin-login">
-                <h4>Přihlášení do administrace</h4>
-                <form onSubmit={handleAdminLogin}>
-                  <input
-                    type="password"
-                    placeholder="Zadejte heslo"
-                    value={adminPassword}
-                    onChange={(e) => setAdminPassword(e.target.value)}
-                    className="admin-password-input"
-                  />
-                  <button type="submit" className="admin-login-btn">
-                    Přihlásit se
-                  </button>
-                </form>
-              </div>
-            ) : (
-              <div className="admin-menu">
-                <h4>✅ Administrace</h4>
-                <div className="admin-options">
-                  <Link 
-                    to="/qr-generator" 
-                    className="admin-option"
-                    onClick={() => setIsBurgerOpen(false)}
-                  >
-                    📱 Generování QR kódů
-                  </Link>
-                  <button className="admin-logout" onClick={handleLogout}>
-                    🚪 Odhlásit se
-                  </button>
+            <div className="burger-body">
+              {!isLoggedIn ? (
+                <div className="admin-login">
+                  <h4>Přihlášení do administrace</h4>
+                  <form onSubmit={handleAdminLogin}>
+                    <input
+                      type="password"
+                      placeholder="Zadejte heslo"
+                      value={adminPassword}
+                      onChange={(e) => setAdminPassword(e.target.value)}
+                      className="admin-password-input"
+                    />
+                    <button type="submit" className="admin-login-btn">
+                      Přihlásit se
+                    </button>
+                  </form>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="admin-menu">
+                  <h4>✅ Administrace</h4>
+                  <div className="admin-options">
+                    <Link 
+                      to="/qr-generator" 
+                      className="admin-option"
+                      onClick={() => setIsBurgerOpen(false)}
+                    >
+                      📱 Generování QR kódů
+                    </Link>
+                    <button className="admin-logout" onClick={handleLogout}>
+                      🚪 Odhlásit se
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
