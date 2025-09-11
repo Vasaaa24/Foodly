@@ -13,6 +13,12 @@ import "./App.css";
 function AppContent() {
   const location = useLocation();
   const isAdminPage = location.pathname === '/qr-generator' || location.pathname === '/admin-panel-2024';
+  
+  // Skrýt footer i na cash payment stránce
+  const isCashPaymentPage = location.pathname.startsWith('/order/') && 
+                           location.state?.paymentMethod === "cash";
+  
+  const hideFooter = isAdminPage || isCashPaymentPage;
 
   return (
     <div className="app">
@@ -30,7 +36,7 @@ function AppContent() {
         </Routes>
       </main>
 
-      {!isAdminPage && <BottomBar />}
+      {!hideFooter && <BottomBar />}
     </div>
   );
 }
