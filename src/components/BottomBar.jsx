@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
 
 const BottomBar = () => {
   const { totalItems, totalPrice, items, clearCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  const handleOrderClick = () => {
-    if (totalItems > 0) {
+  // Zjisti, zda jsme na stránce košíku
+  const isCartPage = location.pathname === "/cart";
+
+  const handleActionClick = () => {
+    if (totalItems === 0) return;
+    
+    if (isCartPage) {
+      // Na stránce košíku otevři platební modal
       setShowPaymentModal(true);
+    } else {
+      // Na jiných stránkách přesměruj do košíku
+      navigate("/cart");
     }
   };
 
@@ -42,10 +52,10 @@ const BottomBar = () => {
 
           <button
             className="bottom-order-btn"
-            onClick={handleOrderClick}
+            onClick={handleActionClick}
             disabled={totalItems === 0}
           >
-            Zaplatit
+            {isCartPage ? "Zaplatit" : "Objednat"}
           </button>
         </div>
       </div>
