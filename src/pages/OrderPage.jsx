@@ -1,6 +1,7 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useEffect, useState } from "react";
+import PaymentModal from "../components/PaymentModal";
 
 const OrderPage = () => {
   const { id } = useParams();
@@ -8,6 +9,7 @@ const OrderPage = () => {
   const navigate = useNavigate();
   const { totalPrice, clearCart } = useCart();
   const [timeRemaining, setTimeRemaining] = useState(300); // 5 minut = 300 sekund
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // Získání dat z navigace (payment method, items, total, selectedTable, paymentData)
   const orderData = location.state || {};
@@ -77,17 +79,33 @@ const OrderPage = () => {
   };
 
   const handleCardPayment = () => {
-    // Návrat do košíku s možností změnit platební metodu
+    // Otevře platební modal namísto navigace
     if (confirm("Chcete zaplatit kartou namísto hotovosti? Objednávka půjde ihned do kuchyně.")) {
-      navigate("/cart", { 
-        state: { 
-          returnFromCash: true,
-          orderId: id,
-          items: items,
-          total: total
-        }
-      });
+      setShowPaymentModal(true);
     }
+  };
+
+  const handlePaymentConfirm = (paymentMethod, paymentData) => {
+    // Generuj nové ID objednávky pro kartu
+    const newOrderId = Math.floor(Math.random() * 10000);
+    
+    // Přesměruj na novou objednávku s kartou
+    navigate(`/order/${newOrderId}`, {
+      state: {
+        paymentMethod,
+        paymentData,
+        items: [...items],
+        total: total,
+        selectedTable,
+      },
+    });
+    
+    setShowPaymentModal(false);
+  };
+
+  const handlePaymentModalClose = () => {
+    setShowPaymentModal(false);
+    // Zůstat na cash payment stránce
   };
 
   // Speciální rozhraní pro hotovostní platby
@@ -127,6 +145,14 @@ const OrderPage = () => {
             </button>
           </div>
         </div>
+
+        {/* Platební modal pro změnu na kartu */}
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={handlePaymentModalClose}
+          total={total?.toFixed(2) || totalPrice.toFixed(2)}
+          onPaymentConfirm={handlePaymentConfirm}
+        />
       </div>
     );
   }
