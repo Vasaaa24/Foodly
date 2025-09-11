@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Header = () => {
-  const { totalItems, selectedTable } = useCart();
+  const { totalItems, isQRCustomer } = useCart();
   const location = useLocation();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
   const isAdminPage = location.pathname === '/qr-generator';
   
   // Skrýt burger menu pro zákazníky přicházející přes QR kód
-  const isQRCustomer = selectedTable !== null;
+  const isQRUser = isQRCustomer();
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);
@@ -46,7 +46,7 @@ const Header = () => {
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          {!isQRCustomer && (
+          {!isQRUser && (
             <button 
               className={`burger-menu ${isBurgerOpen ? 'open' : ''}`}
               onClick={toggleBurger}
@@ -61,7 +61,7 @@ const Header = () => {
 
         <div className="header-center">
           <Link to="/" className="logo">
-            <h1>{isAdminPage ? '⚙️ Administrace' : '🍽️ Foodly'}</h1>
+            <h1>{(isAdminPage && !isQRUser) ? '⚙️ Administrace' : '🍽️ Foodly'}</h1>
           </Link>
         </div>
 
@@ -76,7 +76,7 @@ const Header = () => {
       </div>
 
       {/* Burger Menu Overlay - pouze pro ne-QR uživatele */}
-      {!isQRCustomer && (
+      {!isQRUser && (
         <div className={`burger-overlay ${isBurgerOpen ? 'open' : ''}`}>
           <div className="burger-content">
             <div className="burger-header">

@@ -10,22 +10,11 @@ import QRGeneratorPage from "./pages/QRGeneratorPage";
 import IntroScreen from "./components/IntroScreen";
 import "./App.css";
 
-// Komponenta pro ochranu admin routes
-function ProtectedAdminRoute({ children }) {
-  const { selectedTable } = useCart();
-  const isQRCustomer = selectedTable !== null;
-  
-  // QR zákazníci nemohou přistupovat k admin stránkám
-  if (isQRCustomer) {
-    return <Navigate to="/" replace />;
-  }
-  
-  return children;
-}
-
 function AppContent() {
   const location = useLocation();
+  const { isQRCustomer } = useCart();
   const isAdminPage = location.pathname === '/qr-generator';
+  const isQRUser = isQRCustomer();
 
   return (
     <div className="app">
@@ -36,14 +25,17 @@ function AppContent() {
           <Route path="/" element={<MenuPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order/:id" element={<OrderPage />} />
-          <Route 
-            path="/qr-generator" 
-            element={
-              <ProtectedAdminRoute>
-                <QRGeneratorPage />
-              </ProtectedAdminRoute>
-            } 
-          />
+          {/* Admin route je dostupná pouze pro ne-QR uživatele */}
+          {!isQRUser && (
+            <Route 
+              path="/qr-generator" 
+              element={<QRGeneratorPage />}
+            />
+          )}
+          {/* Fallback pro QR uživatele kteří se pokusí o admin přístup */}
+          {isQRUser && (
+            <Route path="/qr-generator" element={<Navigate to="/" replace />} />
+          )}
         </Routes>
       </main>
 

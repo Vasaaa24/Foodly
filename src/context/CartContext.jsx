@@ -80,12 +80,47 @@ export const CartProvider = ({ children }) => {
     const tableFromUrl = urlParams.get('table');
     
     if (tableFromUrl && !state.selectedTable) {
-      dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(tableFromUrl) });
+      const tableNumber = parseInt(tableFromUrl);
+      dispatch({ type: CART_ACTIONS.SET_TABLE, payload: tableNumber });
+      
+      // Uložíme do localStorage že uživatel přišel přes QR
+      localStorage.setItem('isQRCustomer', 'true');
+      localStorage.setItem('qrTable', tableNumber.toString());
+      
       // Odstraníme parametr z URL aby nebyl viditelný
       const newUrl = window.location.pathname;
       window.history.replaceState({}, '', newUrl);
     }
+    
+    // Při načtení stránky zkontrolujeme localStorage
+    if (!tableFromUrl && !state.selectedTable) {
+      const savedQRStatus = localStorage.getItem('isQRCustomer');
+      const savedTable = localStorage.getItem('qrTable');
+      
+      if (savedQRStatus === 'true' && savedTable) {
+        dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(savedTable) });
+      }
+    }
   }, [state.selectedTable]);
+
+  // Dodatečná ochrana - monitoring URL změn pro QR zákazníky
+  useEffect(() => {
+    if (isQRCustomer()) {
+      const handlePopState = (event) => {
+        const currentPath = window.location.pathname;
+        // Pokud se QR zákazník pokusí jít na admin stránku, přesměruj ho
+        if (currentPath === '/qr-generator') {
+          window.history.replaceState({}, '', '/');
+        }
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, []);
 
   // Actions
   const addItem = (item) => {
@@ -101,11 +136,42 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
+    // Pokud je uživatel QR zákazník, zachováme jeho stav
+    const isQRCustomer = localStorage.getItem('isQRCustomer') === 'true';
+    
     dispatch({ type: CART_ACTIONS.CLEAR_CART });
+    
+    // Pro QR zákazníky zachováme selectedTable
+    if (isQRCustomer) {
+      const savedTable = localStorage.getItem('qrTable');
+      if (savedTable) {
+        dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(savedTable) });
+      }
+    } else {
+      // Pro normální uživatele vyčistíme vše
+      localStorage.removeItem('isQRCustomer');
+      localStorage.removeItem('qrTable');
+    }
   };
 
   const setTable = (tableNumber) => {
     dispatch({ type: CART_ACTIONS.SET_TABLE, payload: tableNumber });
+  };
+
+  const clearQRSession = () => {
+    // Kompletně vyčistíme QR session
+    localStorage.removeItem('isQRCustomer');
+    localStorage.removeItem('qrTable');
+    dispatch({ type: CART_ACTIONS.CLEAR_CART });
+  };
+
+  const isQRCustomer = () => {
+    return localStorage.getItem('isQRCustomer') === 'true' || state.selectedTable !== null;
+  };
+
+  const hasAdminAccess = () => {
+    // QR zákazníci nemají admin přístup
+    return !isQRCustomer();
   };
 
   // Computed values
@@ -125,6 +191,9 @@ export const CartProvider = ({ children }) => {
     removeItem,
     clearCart,
     setTable,
+    clearQRSession,
+    isQRCustomer,
+    hasAdminAccess,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
