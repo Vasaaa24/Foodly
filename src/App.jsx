@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "r
 import { CartProvider, useCart } from "./context/CartContext";
 import Header from "./components/Header";
 import BottomBar from "./components/BottomBar";
+import InstallButton from "./components/InstallButton";
 import MenuPage from "./pages/MenuPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
@@ -22,6 +23,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      <InstallButton />
       <Header />
 
       <main className="main-content">
