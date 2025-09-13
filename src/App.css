@@ -70,16 +70,22 @@
   text-align: left;
   background: #fff;
   vertical-align: top;
-  border-bottom: 1.5px solid #f3f3f3;
+  border-bottom: 1.5px solid #e5e5e5;
+  border-right: 1.5px solid #e5e5e5;
+  border-left: 1.5px solid #e5e5e5;
+  border-top: 1.5px solid #e5e5e5;
   font-size: 1.13rem;
 }
 .kitchen-orders-table th {
   font-weight: 800;
-  background: #f8f6f6;
+  background: #f6f6fa;
   color: #1a1a1a;
   font-size: 1.18rem;
   letter-spacing: 0.01em;
   border-bottom: 2.5px solid #eaeaea;
+  border-top: 1.5px solid #e5e5e5;
+  border-right: 1.5px solid #e5e5e5;
+  border-left: 1.5px solid #e5e5e5;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -87,6 +93,14 @@
 .kitchen-orders-table tr {
   border-bottom: 1px solid #ececec;
   transition: background 0.13s;
+  background: #fff;
+}
+.kitchen-orders-table tr:nth-child(even) td {
+  background: #fafbfc;
+}
+.kitchen-orders-table tr:hover td {
+  background: #f1f5fa !important;
+}
 }
 .kitchen-orders-table tr:hover {
   background: #f5f5fa;
