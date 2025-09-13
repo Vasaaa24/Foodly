@@ -28,7 +28,6 @@ const AdminOrdersPage = () => {
   return (
     <div className="kitchen-orders-table">
       <div className="kitchen-header-block">
-        <span className="kitchen-header-icon" role="img" aria-label="kitchen">👨‍🍳</span>
         <h2>Kuchyň – Přehled objednávek</h2>
       </div>
       {loading ? (
