@@ -61,7 +61,7 @@ const AdminOrdersPage = () => {
                     ))}
                   </td>
                   <td className="kitchen-customer">{order.customerName || "-"}</td>
-                  <td className="kitchen-total">{order.total} Kč</td>
+                  <td className="kitchen-total">{Math.round(order.total)} Kč</td>
                   <td className="kitchen-status">
                     <select
                       value={order.status}
