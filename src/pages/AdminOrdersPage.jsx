@@ -41,6 +41,7 @@ const AdminOrdersPage = () => {
               <tr>
                 <th>Stůl</th>
                 <th>Položky</th>
+                <th>Popis</th>
                 <th>Jméno</th>
                 <th>Celkem</th>
                 <th>Stav</th>
@@ -56,7 +57,6 @@ const AdminOrdersPage = () => {
                       <div key={i} className="kitchen-item-row">
                         <span className="kitchen-item-name">{item.name}</span>
                         <span className="kitchen-item-qty">x{item.quantity}</span>
-                        {/* Show selected options if present */}
                         {item.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
                           <div className="kitchen-item-options">
                             {Object.entries(item.selectedOptions).map(([key, value]) => (
@@ -64,10 +64,16 @@ const AdminOrdersPage = () => {
                             ))}
                           </div>
                         )}
-                        {/* Show comment if present */}
                         {item.comment && item.comment.trim() && (
                           <div className="kitchen-item-comment">{item.comment}</div>
                         )}
+                      </div>
+                    ))}
+                  </td>
+                  <td className="kitchen-descriptions">
+                    {order.items.map((item, i) => (
+                      <div key={i} className="kitchen-description-row">
+                        {item.description || <span style={{color:'#bbb'}}>–</span>}
                       </div>
                     ))}
                   </td>

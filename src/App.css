@@ -1,3 +1,22 @@
+/* Kitchen order table description column */
+.kitchen-descriptions {
+  min-width: 220px;
+  max-width: 340px;
+  font-size: 0.98rem;
+  color: #444;
+  padding-left: 0.2rem;
+}
+.kitchen-description-row {
+  margin-bottom: 0.18rem;
+  padding-bottom: 0.1rem;
+  border-bottom: 1px dashed #f2e6e6;
+  word-break: break-word;
+  font-style: italic;
+  color: #888;
+}
+.kitchen-description-row:last-child {
+  border-bottom: none;
+}
 /* Kitchen order table item options and comments */
 .kitchen-item-options {
   display: flex;
