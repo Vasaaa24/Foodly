@@ -1,3 +1,35 @@
+/* Kitchen order table item options and comments */
+.kitchen-item-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.kitchen-option-tag {
+  background: linear-gradient(135deg, #fff0e6 0%, #ffe6d9 100%);
+  color: #ff8a50;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ffccb3;
+  margin-right: 0.2rem;
+}
+
+.kitchen-item-comment {
+  background: rgba(102, 102, 102, 0.08);
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding: 0.3rem 0.5rem;
+  border-radius: 7px;
+  margin-top: 0.1rem;
+  margin-bottom: 0.2rem;
+  border-left: 3px solid #ffb366;
+  max-width: 320px;
+  word-break: break-word;
+}
 /* Header blok pro kuchyňskou stránku */
 .kitchen-header-block {
   display: flex;

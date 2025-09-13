@@ -56,6 +56,18 @@ const AdminOrdersPage = () => {
                       <div key={i} className="kitchen-item-row">
                         <span className="kitchen-item-name">{item.name}</span>
                         <span className="kitchen-item-qty">x{item.quantity}</span>
+                        {/* Show selected options if present */}
+                        {item.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
+                          <div className="kitchen-item-options">
+                            {Object.entries(item.selectedOptions).map(([key, value]) => (
+                              <span key={key} className="kitchen-option-tag">{value}</span>
+                            ))}
+                          </div>
+                        )}
+                        {/* Show comment if present */}
+                        {item.comment && item.comment.trim() && (
+                          <div className="kitchen-item-comment">{item.comment}</div>
+                        )}
                       </div>
                     ))}
                   </td>
