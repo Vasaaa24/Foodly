@@ -1,3 +1,27 @@
+/* Header blok pro kuchyňskou stránku */
+.kitchen-header-block {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  background: linear-gradient(90deg, #fff7f3 60%, #fff 100%);
+  border-radius: 18px 18px 0 0;
+  padding: 1.7rem 2.2rem 1.2rem 2.2rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 12px 0 rgba(255, 107, 53, 0.04);
+.kitchen-header-icon {
+  font-size: 2.6rem;
+  margin-right: 0.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.07));
+}
+.kitchen-header-block h2 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin: 0;
+  color: #1a1a1a;
+  letter-spacing: -1px;
+  background: none;
+  box-shadow: none;
+}
 .kitchen-orders-table {
   width: 100%;
   max-width: 1600px;
@@ -5,18 +29,27 @@
   margin-left: 0;
   margin-right: 0;
   padding: 0 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.07);
+  border: 1.5px solid #f2f2f2;
+  overflow: hidden;
 }
 .kitchen-orders-table h2 {
   font-size: 2.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
   font-weight: 800;
   text-align: left;
   letter-spacing: -1px;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 .kitchen-table-wrapper {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #ececec;
+  background: transparent;
+  border-radius: 0;
+  border: none;
 }
 @media (max-width: 1100px) {
   .kitchen-orders-table {
@@ -29,26 +62,40 @@
 }
 .kitchen-orders-table table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 1.18rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.19rem;
   background: #fff;
   table-layout: auto;
+  border-radius: 14px;
+  overflow: hidden;
 }
 .kitchen-orders-table th, .kitchen-orders-table td {
-  padding: 1.3rem 1.1rem;
+  padding: 1.35rem 1.1rem;
   text-align: left;
   background: #fff;
   vertical-align: top;
+  border-bottom: 1.5px solid #f3f3f3;
+  font-size: 1.13rem;
 }
 .kitchen-orders-table th {
   font-weight: 800;
-  font-size: 1.13rem;
-  border-bottom: 2px solid #ececec;
-  background: #fff;
-  letter-spacing: 0.5px;
+  background: #f8f6f6;
+  color: #1a1a1a;
+  font-size: 1.18rem;
+  letter-spacing: 0.01em;
+  border-bottom: 2.5px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 .kitchen-orders-table tr {
   border-bottom: 1px solid #ececec;
+  transition: background 0.13s;
+}
+.kitchen-orders-table tr:hover {
+  background: #f5f5fa;
+  cursor: pointer;
 }
 .kitchen-orders-table tr:last-child {
   border-bottom: none;
@@ -57,6 +104,33 @@
   font-weight: 800;
   font-size: 1.25rem;
   color: #e53e3e;
+}
+/* Zaoblení rohů tabulky */
+.kitchen-orders-table th:first-child {
+  border-top-left-radius: 14px;
+}
+.kitchen-orders-table th:last-child {
+  border-top-right-radius: 14px;
+}
+.kitchen-orders-table tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+.kitchen-orders-table tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+/* Lepší barvy stavů */
+.status-nová {
+  color: #1dbf73 !important;
+  background: none;
+}
+.status-priprava {
+  color: #ff9800 !important;
+  background: none;
+}
+.status-hotovo {
+  color: #1976d2 !important;
+  background: none;
+}
 }
 .kitchen-items {
   display: flex;
