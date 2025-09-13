@@ -1,3 +1,28 @@
+/* Stylování selectu pro stav objednávky */
+.status-select {
+  font-size: 1rem;
+  border: none;
+  background: none;
+  font-weight: 700;
+  color: #4caf50;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  outline: none;
+  min-width: 90px;
+  transition: background 0.2s;
+}
+.status-nová {
+  color: #4caf50;
+}
+.status-priprava {
+  color: #ff9800;
+}
+.status-hotovo {
+  color: #2196f3;
+}
+.status-select:focus {
+  background: #f0f0f0;
+}
 /* Kuchyňská tabulka objednávek */
 .kitchen-orders-table {
   max-width: 900px;

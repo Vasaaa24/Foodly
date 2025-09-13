@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { API_URL } from "./api";
+import { API_URL, updateOrderStatus } from "./api";
 
 const AdminOrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -59,7 +59,25 @@ const AdminOrdersPage = () => {
                   </td>
                   <td className="kitchen-customer">{order.customerName || "-"}</td>
                   <td className="kitchen-total">{order.total} Kč</td>
-                  <td className="kitchen-status">{order.status}</td>
+                  <td className="kitchen-status">
+                    <select
+                      value={order.status}
+                      onChange={async (e) => {
+                        const newStatus = e.target.value;
+                        await updateOrderStatus(order.id, newStatus);
+                        setOrders((prev) =>
+                          prev.map((o) =>
+                            o.id === order.id ? { ...o, status: newStatus } : o
+                          )
+                        );
+                      }}
+                      className={`status-select status-${order.status}`}
+                    >
+                      <option value="nová">nová</option>
+                      <option value="priprava">v přípravě</option>
+                      <option value="hotovo">hotovo</option>
+                    </select>
+                  </td>
                   <td className="kitchen-time">{new Date(order.createdAt).toLocaleTimeString("cs-CZ")}</td>
                 </tr>
               ))}
