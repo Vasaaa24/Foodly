@@ -2,6 +2,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useEffect, useState } from "react";
 import PaymentModal from "../components/PaymentModal";
+import { createOrder } from "./api";
 
 const OrderPage = () => {
   const { id } = useParams();
@@ -57,6 +58,19 @@ const OrderPage = () => {
       return () => clearInterval(timer);
     }
   }, [paymentMethod]);
+
+  // Uložit objednávku do backendu při potvrzení
+  useEffect(() => {
+    if (items.length > 0 && selectedTable && paymentMethod) {
+      createOrder({
+        table: selectedTable,
+        items,
+        total,
+        customerName: paymentData?.customerName || "",
+      });
+    }
+    // eslint-disable-next-line
+  }, []);
 
   // Formátování času MM:SS
   const formatTime = (seconds) => {

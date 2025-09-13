@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import QRGeneratorPage from "./pages/QRGeneratorPage";
 import IntroScreen from "./components/IntroScreen";
+import AdminOrdersPage from "./pages/AdminOrdersPage";
 import "./App.css";
 
 function AppContent() {
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/qr-generator" element={<QRGeneratorPage />} />
           {/* Alternativní skrytá cesta k administraci */}
           <Route path="/admin-panel-2024" element={<QRGeneratorPage />} />
+          <Route path="/admin-orders" element={<AdminOrdersPage />} />
         </Routes>
       </main>
 
