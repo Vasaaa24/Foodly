@@ -3,8 +3,7 @@ import { useCart } from "../context/CartContext";
 import CartItem from "../components/CartItem";
 
 const CartPage = () => {
-  const { items, totalPrice, totalItems, clearCart, selectedTable } =
-    useCart();
+  const { items, totalPrice, totalItems, clearCart, selectedTable } = useCart();
   const navigate = useNavigate();
 
   if (items.length === 0) {

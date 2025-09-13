@@ -9,27 +9,29 @@ const Header = () => {
   const [keySequence, setKeySequence] = useState([]);
 
   // Kontrola, jestli jsme na admin stránce
-  const isAdminPage = location.pathname === '/qr-generator' || location.pathname === '/admin-panel-2024';
+  const isAdminPage =
+    location.pathname === "/qr-generator" ||
+    location.pathname === "/admin-panel-2024";
 
   // Skrytý přístup k administraci pomocí klávesové zkratky "admin"
   useEffect(() => {
     const handleKeyPress = (e) => {
       const key = e.key.toLowerCase();
-      setKeySequence(prev => {
+      setKeySequence((prev) => {
         const newSequence = [...prev, key].slice(-5); // Keep only last 5 keys
-        
+
         // Pokud uživatel napíše "admin", přesměruj na administraci
-        if (newSequence.join('') === 'admin') {
-          navigate('/qr-generator');
+        if (newSequence.join("") === "admin") {
+          navigate("/qr-generator");
           return [];
         }
-        
+
         return newSequence;
       });
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
   }, [navigate]);
 
   return (
@@ -41,7 +43,7 @@ const Header = () => {
 
         <div className="header-center">
           <Link to="/" className="logo">
-            <h1>{isAdminPage ? '⚙️ Administrace' : '🍽️ Foodly'}</h1>
+            <h1>{isAdminPage ? "⚙️ Administrace" : "🍽️ Foodly"}</h1>
           </Link>
         </div>
 
@@ -49,7 +51,9 @@ const Header = () => {
           {!isAdminPage && (
             <Link to="/cart" className="cart-icon">
               🛒
-              {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+              {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )}
             </Link>
           )}
         </div>

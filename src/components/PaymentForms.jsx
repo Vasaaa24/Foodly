@@ -337,7 +337,7 @@ export const CashPaymentForm = ({ onSubmit, onCancel, total }) => {
       setError("Prosím zadejte vaše jméno");
       return;
     }
-    
+
     onSubmit({
       method: "cash",
       amount: total,

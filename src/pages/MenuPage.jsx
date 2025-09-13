@@ -64,7 +64,6 @@ const MenuPage = () => {
 
   return (
     <div className="menu-page">
-      
       <div className="menu-header">
         {/* Vyhledávací pole */}
         <div className="search-container">

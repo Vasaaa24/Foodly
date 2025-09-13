@@ -42,12 +42,14 @@ const OrderPage = () => {
   useEffect(() => {
     if (paymentMethod === "cash") {
       const timer = setInterval(() => {
-        setTimeRemaining(prev => {
+        setTimeRemaining((prev) => {
           if (prev <= 1) {
             clearInterval(timer);
             // Upozornění když čas vyprší
             setTimeout(() => {
-              alert("⏰ Čas pro potvrzení objednávky vypršel. Prosím zavolejte obsluhu nebo zaplaťte kartou.");
+              alert(
+                "⏰ Čas pro potvrzení objednávky vypršel. Prosím zavolejte obsluhu nebo zaplaťte kartou."
+              );
             }, 100);
             return 0;
           }
@@ -76,7 +78,9 @@ const OrderPage = () => {
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const handleBackToMenu = () => {
@@ -94,7 +98,11 @@ const OrderPage = () => {
 
   const handleCardPayment = () => {
     // Otevře platební modal namísto navigace
-    if (confirm("Chcete zaplatit kartou namísto hotovosti? Objednávka půjde ihned do kuchyně.")) {
+    if (
+      confirm(
+        "Chcete zaplatit kartou namísto hotovosti? Objednávka půjde ihned do kuchyně."
+      )
+    ) {
       setShowPaymentModal(true);
     }
   };
@@ -102,7 +110,7 @@ const OrderPage = () => {
   const handlePaymentConfirm = (paymentMethod, paymentData) => {
     // Generuj nové ID objednávky pro kartu
     const newOrderId = Math.floor(Math.random() * 10000);
-    
+
     // Přesměruj na novou objednávku s kartou
     navigate(`/order/${newOrderId}`, {
       state: {
@@ -113,7 +121,7 @@ const OrderPage = () => {
         selectedTable,
       },
     });
-    
+
     setShowPaymentModal(false);
   };
 
@@ -127,8 +135,11 @@ const OrderPage = () => {
     return (
       <div className="order-page cash-payment-page">
         <div className="cash-order-confirmation">
-          <h1>Objednávka vytvořena. Pro platbu hotovostí zavolejte obsluhu pro potvrzení.</h1>
-          
+          <h1>
+            Objednávka vytvořena. Pro platbu hotovostí zavolejte obsluhu pro
+            potvrzení.
+          </h1>
+
           <div className="cash-payment-layout">
             <div className="table-info-large">
               <div className="table-label">Stůl:</div>
@@ -138,7 +149,11 @@ const OrderPage = () => {
 
           <div className="order-timer">
             <span>Objednávka čeká na potvrzení: </span>
-            <span className={`timer-display ${timeRemaining === 0 ? 'time-expired' : ''}`}>
+            <span
+              className={`timer-display ${
+                timeRemaining === 0 ? "time-expired" : ""
+              }`}
+            >
               {formatTime(timeRemaining)}
             </span>
             {timeRemaining === 0 && (
@@ -152,10 +167,12 @@ const OrderPage = () => {
             <button className="call-waiter-btn" onClick={handleCallWaiter}>
               Zavolat obsluhu pro potvrzení
             </button>
-            
+
             <button className="card-payment-option" onClick={handleCardPayment}>
               Zaplatit kartou / Apple Pay
-              <span className="card-payment-subtitle">(poslat do kuchyně okamžitě)</span>
+              <span className="card-payment-subtitle">
+                (poslat do kuchyně okamžitě)
+              </span>
             </button>
           </div>
         </div>

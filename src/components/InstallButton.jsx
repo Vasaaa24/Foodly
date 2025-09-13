@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const InstallButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -13,9 +13,9 @@ const InstallButton = () => {
       setShowInstallButton(true);
     };
 
-    window.addEventListener('beforeinstallprompt', handler);
+    window.addEventListener("beforeinstallprompt", handler);
 
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   const handleInstallClick = async () => {
@@ -23,12 +23,12 @@ const InstallButton = () => {
 
     // Zobrazit install prompt
     deferredPrompt.prompt();
-    
+
     // Počkat na uživatelovu volbu
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     console.log(`User response: ${outcome}`);
-    
+
     // Vymazat deferredPrompt
     setDeferredPrompt(null);
     setShowInstallButton(false);
@@ -40,13 +40,10 @@ const InstallButton = () => {
     <div className="install-banner">
       <div className="install-content">
         <span>📱 Přidat Foodly na plochu?</span>
-        <button 
-          onClick={handleInstallClick}
-          className="install-button"
-        >
+        <button onClick={handleInstallClick} className="install-button">
           Instalovat
         </button>
-        <button 
+        <button
           onClick={() => setShowInstallButton(false)}
           className="install-close"
         >

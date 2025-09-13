@@ -45,20 +45,24 @@ const AdminOrdersPage = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map(order => (
+            {orders.map((order) => (
               <tr key={order.id}>
-                <td><b>{order.table}</b></td>
                 <td>
-                  <ul style={{margin:0,paddingLeft:16}}>
+                  <b>{order.table}</b>
+                </td>
+                <td>
+                  <ul style={{ margin: 0, paddingLeft: 16 }}>
                     {order.items.map((item, i) => (
-                      <li key={i}>{item.name} x{item.quantity}</li>
+                      <li key={i}>
+                        {item.name} x{item.quantity}
+                      </li>
                     ))}
                   </ul>
                 </td>
-                <td>{order.customerName || '-'}</td>
+                <td>{order.customerName || "-"}</td>
                 <td>{order.total} Kč</td>
                 <td>{order.status}</td>
-                <td>{new Date(order.createdAt).toLocaleString('cs-CZ')}</td>
+                <td>{new Date(order.createdAt).toLocaleString("cs-CZ")}</td>
               </tr>
             ))}
           </tbody>

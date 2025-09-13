@@ -77,28 +77,31 @@ export const CartProvider = ({ children }) => {
   // Automatické nastavení stolu z URL parametru
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const tableFromUrl = urlParams.get('table');
-    
+    const tableFromUrl = urlParams.get("table");
+
     if (tableFromUrl && !state.selectedTable) {
       const tableNumber = parseInt(tableFromUrl);
       dispatch({ type: CART_ACTIONS.SET_TABLE, payload: tableNumber });
-      
+
       // Uložíme do localStorage že uživatel přišel přes QR
-      localStorage.setItem('isQRCustomer', 'true');
-      localStorage.setItem('qrTable', tableNumber.toString());
-      
+      localStorage.setItem("isQRCustomer", "true");
+      localStorage.setItem("qrTable", tableNumber.toString());
+
       // Odstraníme parametr z URL aby nebyl viditelný
       const newUrl = window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
+      window.history.replaceState({}, "", newUrl);
     }
-    
+
     // Při načtení stránky zkontrolujeme localStorage
     if (!tableFromUrl && !state.selectedTable) {
-      const savedQRStatus = localStorage.getItem('isQRCustomer');
-      const savedTable = localStorage.getItem('qrTable');
-      
-      if (savedQRStatus === 'true' && savedTable) {
-        dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(savedTable) });
+      const savedQRStatus = localStorage.getItem("isQRCustomer");
+      const savedTable = localStorage.getItem("qrTable");
+
+      if (savedQRStatus === "true" && savedTable) {
+        dispatch({
+          type: CART_ACTIONS.SET_TABLE,
+          payload: parseInt(savedTable),
+        });
       }
     }
   }, [state.selectedTable]);
@@ -118,20 +121,23 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     // Pokud je uživatel QR zákazník, zachováme jeho stav
-    const isQRCustomer = localStorage.getItem('isQRCustomer') === 'true';
-    
+    const isQRCustomer = localStorage.getItem("isQRCustomer") === "true";
+
     dispatch({ type: CART_ACTIONS.CLEAR_CART });
-    
+
     // Pro QR zákazníky zachováme selectedTable
     if (isQRCustomer) {
-      const savedTable = localStorage.getItem('qrTable');
+      const savedTable = localStorage.getItem("qrTable");
       if (savedTable) {
-        dispatch({ type: CART_ACTIONS.SET_TABLE, payload: parseInt(savedTable) });
+        dispatch({
+          type: CART_ACTIONS.SET_TABLE,
+          payload: parseInt(savedTable),
+        });
       }
     } else {
       // Pro normální uživatele vyčistíme vše
-      localStorage.removeItem('isQRCustomer');
-      localStorage.removeItem('qrTable');
+      localStorage.removeItem("isQRCustomer");
+      localStorage.removeItem("qrTable");
     }
   };
 
@@ -141,13 +147,16 @@ export const CartProvider = ({ children }) => {
 
   const clearQRSession = () => {
     // Kompletně vyčistíme QR session
-    localStorage.removeItem('isQRCustomer');
-    localStorage.removeItem('qrTable');
+    localStorage.removeItem("isQRCustomer");
+    localStorage.removeItem("qrTable");
     dispatch({ type: CART_ACTIONS.CLEAR_CART });
   };
 
   const isQRCustomer = () => {
-    return localStorage.getItem('isQRCustomer') === 'true' || state.selectedTable !== null;
+    return (
+      localStorage.getItem("isQRCustomer") === "true" ||
+      state.selectedTable !== null
+    );
   };
 
   const hasAdminAccess = () => {

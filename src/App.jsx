@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { CartProvider, useCart } from "./context/CartContext";
 import Header from "./components/Header";
 import BottomBar from "./components/BottomBar";
@@ -14,12 +20,15 @@ import "./App.css";
 
 function AppContent() {
   const location = useLocation();
-  const isAdminPage = location.pathname === '/qr-generator' || location.pathname === '/admin-panel-2024';
-  
+  const isAdminPage =
+    location.pathname === "/qr-generator" ||
+    location.pathname === "/admin-panel-2024";
+
   // Skrýt footer i na cash payment stránce
-  const isCashPaymentPage = location.pathname.startsWith('/order/') && 
-                           location.state?.paymentMethod === "cash";
-  
+  const isCashPaymentPage =
+    location.pathname.startsWith("/order/") &&
+    location.state?.paymentMethod === "cash";
+
   const hideFooter = isAdminPage || isCashPaymentPage;
 
   return (
