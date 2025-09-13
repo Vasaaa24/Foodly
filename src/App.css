@@ -1,3 +1,106 @@
+/* Kuchyňská tabulka objednávek */
+.kitchen-orders-table {
+  max-width: 900px;
+  margin: 2rem auto 0 auto;
+  padding: 0 1rem;
+}
+.kitchen-orders-table h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+.kitchen-table-wrapper {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+.kitchen-orders-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.1rem;
+  background: #fff;
+}
+.kitchen-orders-table th, .kitchen-orders-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+}
+.kitchen-orders-table th {
+  background: #f7f7f7;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+.kitchen-orders-table tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+.kitchen-orders-table tr:last-child {
+  border-bottom: none;
+}
+.kitchen-table {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e53e3e;
+}
+.kitchen-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.kitchen-item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+}
+.kitchen-item-name {
+  font-weight: 500;
+}
+.kitchen-item-qty {
+  color: #888;
+  font-size: 0.98rem;
+  margin-left: 0.5rem;
+}
+.kitchen-customer {
+  color: #444;
+  font-size: 1rem;
+}
+.kitchen-total {
+  font-weight: 700;
+  color: #2d2d2d;
+}
+.kitchen-status {
+  font-weight: 600;
+  color: #4caf50;
+  text-transform: lowercase;
+}
+.kitchen-time {
+  color: #888;
+  font-size: 0.98rem;
+}
+.kitchen-loading, .kitchen-empty {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 700px) {
+  .kitchen-orders-table {
+    padding: 0 0.2rem;
+  }
+  .kitchen-orders-table h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .kitchen-orders-table table {
+    font-size: 0.98rem;
+  }
+  .kitchen-table {
+    font-size: 1rem;
+  }
+}
 /* Global Styles */
 * {
   margin: 0;

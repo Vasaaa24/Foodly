@@ -26,47 +26,46 @@ const AdminOrdersPage = () => {
   };
 
   return (
-    <div className="admin-orders-page">
-      <h2>Všechny objednávky</h2>
+    <div className="kitchen-orders-table">
+      <h2>Kuchyň – Přehled objednávek</h2>
       {loading ? (
-        <p>Načítání...</p>
+        <div className="kitchen-loading">Načítání…</div>
       ) : orders.length === 0 ? (
-        <p>Žádné objednávky.</p>
+        <div className="kitchen-empty">Žádné objednávky.</div>
       ) : (
-        <table className="orders-table">
-          <thead>
-            <tr>
-              <th>Stůl</th>
-              <th>Položky</th>
-              <th>Jméno</th>
-              <th>Celkem</th>
-              <th>Stav</th>
-              <th>Čas</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>
-                  <b>{order.table}</b>
-                </td>
-                <td>
-                  <ul style={{ margin: 0, paddingLeft: 16 }}>
-                    {order.items.map((item, i) => (
-                      <li key={i}>
-                        {item.name} x{item.quantity}
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td>{order.customerName || "-"}</td>
-                <td>{order.total} Kč</td>
-                <td>{order.status}</td>
-                <td>{new Date(order.createdAt).toLocaleString("cs-CZ")}</td>
+        <div className="kitchen-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Stůl</th>
+                <th>Položky</th>
+                <th>Jméno</th>
+                <th>Celkem</th>
+                <th>Stav</th>
+                <th>Čas</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td className="kitchen-table">{order.table}</td>
+                  <td className="kitchen-items">
+                    {order.items.map((item, i) => (
+                      <div key={i} className="kitchen-item-row">
+                        <span className="kitchen-item-name">{item.name}</span>
+                        <span className="kitchen-item-qty">x{item.quantity}</span>
+                      </div>
+                    ))}
+                  </td>
+                  <td className="kitchen-customer">{order.customerName || "-"}</td>
+                  <td className="kitchen-total">{order.total} Kč</td>
+                  <td className="kitchen-status">{order.status}</td>
+                  <td className="kitchen-time">{new Date(order.createdAt).toLocaleTimeString("cs-CZ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
