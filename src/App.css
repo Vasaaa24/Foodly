@@ -369,8 +369,8 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 80px; /* Prostor pro bottom bar */
-  max-width: 100%;
-  overflow-x: hidden;
+  max-width: 100vw;
+  overflow-x: visible;
 }
 
 /* Header Styles */
@@ -691,12 +691,18 @@ body {
 /* Main Content */
 .main-content {
   flex: 1;
-  max-width: 428px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow-x: visible;
+}
+/* Kuchyňská stránka – tabulka přes celou šířku */
+.kitchen-orders-table, .kitchen-table-wrapper, .kitchen-orders-table table {
+  width: 100% !important;
+  max-width: 100vw !important;
+  min-width: 0;
 }
 
 /* Menu Page Styles */
