@@ -69,7 +69,7 @@ const MenuPage = () => {
         <div className="table-info">
           <div className="table-number-display">
             <span className="table-icon">🍴</span>
-            <span className="table-text">Stůl {selectedTable}</span>
+            <span className="table-text">{selectedTable}</span>
           </div>
         </div>
       )}
