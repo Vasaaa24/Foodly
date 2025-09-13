@@ -23,18 +23,19 @@ function AppContent() {
   const isAdminPage =
     location.pathname === "/qr-generator" ||
     location.pathname === "/admin-panel-2024";
+  const isKitchenPage = location.pathname === "/admin-orders";
 
   // Skrýt footer i na cash payment stránce
   const isCashPaymentPage =
     location.pathname.startsWith("/order/") &&
     location.state?.paymentMethod === "cash";
 
-  const hideFooter = isAdminPage || isCashPaymentPage;
+  const hideFooter = isAdminPage || isCashPaymentPage || isKitchenPage;
 
   return (
     <div className="app">
       <InstallButton />
-      <Header />
+      {!isKitchenPage && <Header />}
 
       <main className="main-content">
         <Routes>
