@@ -41,7 +41,8 @@ const AdminOrdersPage = () => {
               <tr>
                 <th>Stůl</th>
                 <th>Položky</th>
-                <th>Popis</th>
+                <th>Volby</th>
+                <th>Komentář</th>
                 <th>Jméno</th>
                 <th>Celkem</th>
                 <th>Stav</th>
@@ -57,23 +58,30 @@ const AdminOrdersPage = () => {
                       <div key={i} className="kitchen-item-row">
                         <span className="kitchen-item-name">{item.name}</span>
                         <span className="kitchen-item-qty">x{item.quantity}</span>
-                        {item.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
-                          <div className="kitchen-item-options">
-                            {Object.entries(item.selectedOptions).map(([key, value]) => (
-                              <span key={key} className="kitchen-option-tag">{value}</span>
-                            ))}
-                          </div>
-                        )}
-                        {item.comment && item.comment.trim() && (
-                          <div className="kitchen-item-comment">{item.comment}</div>
+                      </div>
+                    ))}
+                  </td>
+                  <td className="kitchen-options">
+                    {order.items.map((item, i) => (
+                      <div key={i} className="kitchen-option-row">
+                        {item.selectedOptions && Object.keys(item.selectedOptions).length > 0 ? (
+                          Object.entries(item.selectedOptions).map(([key, value]) => (
+                            <span key={key} className="kitchen-option-tag">{value}</span>
+                          ))
+                        ) : (
+                          <span style={{color:'#bbb'}}>–</span>
                         )}
                       </div>
                     ))}
                   </td>
-                  <td className="kitchen-descriptions">
+                  <td className="kitchen-comments">
                     {order.items.map((item, i) => (
-                      <div key={i} className="kitchen-description-row">
-                        {item.description || <span style={{color:'#bbb'}}>–</span>}
+                      <div key={i} className="kitchen-comment-row">
+                        {item.comment && item.comment.trim() ? (
+                          <span className="kitchen-item-comment">{item.comment}</span>
+                        ) : (
+                          <span style={{color:'#bbb'}}>–</span>
+                        )}
                       </div>
                     ))}
                   </td>
