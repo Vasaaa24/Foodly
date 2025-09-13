@@ -446,76 +446,42 @@ body {
 .table-info {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
-  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   padding: 0 1rem;
 }
 
 .table-number-display {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  background: #ff6b35;
   color: white;
-  padding: 1.25rem 2rem;
-  border-radius: 20px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-  box-shadow: 
-    0 8px 32px rgba(255, 107, 53, 0.3),
-    0 4px 16px rgba(255, 107, 53, 0.2);
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
   border: none;
   width: auto;
-  min-width: 200px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.02em;
-  position: relative;
-  overflow: hidden;
-}
-
-.table-number-display::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.table-number-display:hover::before {
-  left: 100%;
+  min-width: 160px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .table-number-display:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(255, 107, 53, 0.4),
-    0 6px 20px rgba(255, 107, 53, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
 }
 
 .table-icon {
-  font-size: 1.8rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  }
-  to {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-  }
+  font-size: 1.2rem;
 }
 
 .table-text {
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 /* Category Tabs */
@@ -1001,19 +967,19 @@ body {
 /* Mobile responsivity for table grid */
 @media (max-width: 768px) {
   .table-info {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     padding: 0 1rem;
   }
 
   .table-number-display {
-    padding: 1.1rem 1.8rem;
-    font-size: 1rem;
-    min-width: 180px;
-    border-radius: 16px;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.9rem;
+    min-width: 140px;
+    border-radius: 10px;
   }
 
   .table-icon {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .table-grid {
