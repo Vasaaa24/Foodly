@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:4000/orders";
+import { useEffect, useState } from "react";
+import { API_URL } from "./api";
 
 const AdminOrdersPage = () => {
   const [orders, setOrders] = useState([]);
