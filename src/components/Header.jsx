@@ -92,11 +92,12 @@ const Header = () => {
                 src={kosPng}
                 alt="Košík"
                 style={{
-                  width: 38,
-                  height: 38,
+                  width: 30,
+                  height: 30,
                   objectFit: "contain",
                   display: "block",
-                  marginRight: 10,
+                  marginRight: 15,
+                  marginTop: 9,
                 }}
               />
               {totalItems > 0 && (
