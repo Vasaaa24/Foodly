@@ -82,7 +82,7 @@ const Header = () => {
               className="cart-icon"
               style={{ fontSize: "2rem", lineHeight: 1 }}
             >
-              🧺
+              🛒
               {totalItems > 0 && (
                 <span className="cart-badge">{totalItems}</span>
               )}
