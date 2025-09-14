@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from "react";
 import "./IntroScreen.css";
+import qrestLogo from "../assets/qrest-logo.png";
 
 const IntroScreen = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -26,24 +28,11 @@ const IntroScreen = ({ onComplete }) => {
           <div className="circle circle-5"></div>
         </div>
 
-        <div className="intro-content">
-          <div className="logo-container">
-            <div className="fork-icon">
-              <div className="fork-handle"></div>
-              <div className="fork-prongs">
-                <div className="prong"></div>
-                <div className="prong"></div>
-                <div className="prong"></div>
-              </div>
-            </div>
-            <div className="logo-text">
-              <span className="logo-food">Food</span>
-              <span className="logo-ly">ly</span>
-            </div>
-          </div>
 
-          <div className="tagline">
-            <span>Váš digitální oficiant k službám</span>
+        <div className="intro-content">
+
+          <div className="logo-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '32px' }}>
+            <img src={qrestLogo} alt="QRest logo" style={{ width: '180px', height: '180px', objectFit: 'contain' }} />
           </div>
 
           <div className="loading-bar">
@@ -51,14 +40,7 @@ const IntroScreen = ({ onComplete }) => {
           </div>
         </div>
 
-        <div className="sparkles">
-          <div className="sparkle sparkle-1">✨</div>
-          <div className="sparkle sparkle-2">✨</div>
-          <div className="sparkle sparkle-3">✨</div>
-          <div className="sparkle sparkle-4">✨</div>
-          <div className="sparkle sparkle-5">✨</div>
-          <div className="sparkle sparkle-6">✨</div>
-        </div>
+
       </div>
     </div>
   );

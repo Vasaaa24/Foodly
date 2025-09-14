@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 50%, #ffffff 100%);
+  background: #0055AA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,23 +121,16 @@
 }
 
 /* Logo kontejner */
+
 .logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  animation: logoGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes logoGlow {
-  0% {
-    filter: drop-shadow(0 0 10px rgba(229, 62, 62, 0.3));
-  }
-  100% {
-    filter: drop-shadow(0 0 20px rgba(229, 62, 62, 0.6));
-  }
-}
+
 
 /* Vidlička ikona */
 .fork-icon {
@@ -281,7 +274,7 @@
 
 .loading-progress {
   height: 100%;
-  background: linear-gradient(90deg, #e53e3e 0%, #ff6b6b 50%, #e53e3e 100%);
+  background: #f5a523cc;
   border-radius: 2px;
   animation: loadingBar 3s ease-out;
   animation-delay: 2s;
@@ -298,70 +291,7 @@
 }
 
 /* Sparkles */
-.sparkles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
 
-.sparkle {
-  position: absolute;
-  font-size: 1.5rem;
-  animation: sparkleFloat 4s ease-in-out infinite;
-  opacity: 0;
-}
-
-.sparkle-1 {
-  top: 15%;
-  left: 20%;
-  animation-delay: 1s;
-}
-
-.sparkle-2 {
-  top: 25%;
-  right: 25%;
-  animation-delay: 2s;
-}
-
-.sparkle-3 {
-  bottom: 20%;
-  left: 15%;
-  animation-delay: 3s;
-}
-
-.sparkle-4 {
-  bottom: 35%;
-  right: 20%;
-  animation-delay: 4s;
-}
-
-.sparkle-5 {
-  top: 60%;
-  left: 10%;
-  animation-delay: 2.5s;
-}
-
-.sparkle-6 {
-  top: 40%;
-  right: 15%;
-  animation-delay: 3.5s;
-}
-
-@keyframes sparkleFloat {
-  0%,
-  100% {
-    opacity: 0;
-    transform: translateY(0) scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-30px) scale(1);
-  }
-}
 
 /* Responsive design */
 @media (max-width: 428px) {
