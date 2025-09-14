@@ -53,7 +53,7 @@ const CartPage = () => {
                   color: percent === tipPercent ? "#43a047" : "#222",
                   fontWeight: percent === tipPercent ? 700 : 500,
                   fontSize: "1rem",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   cursor: "pointer",
                   transition: "all 0.2s",
                   outline: "none",
