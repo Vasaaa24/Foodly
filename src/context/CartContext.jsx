@@ -19,7 +19,9 @@ const cartReducer = (state, action) => {
       // Pokud přidáváme položku s qty/quantity > 1, přičteme správně
       const incomingQty = action.payload.qty || action.payload.quantity || 1;
       const itemId = action.payload.id;
-      const existingItemIndex = state.items.findIndex((item) => item.id === itemId);
+      const existingItemIndex = state.items.findIndex(
+        (item) => item.id === itemId
+      );
       if (existingItemIndex >= 0) {
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex].qty += incomingQty;

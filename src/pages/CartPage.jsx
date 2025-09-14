@@ -21,7 +21,9 @@ const CartPage = () => {
       <div className="cart-summary">
         <div className="total-section">
           <div className="total-line">
-            <span>Celkem ({items.reduce((sum, item) => sum + item.qty, 0)} ks):</span>
+            <span>
+              Celkem ({items.reduce((sum, item) => sum + item.qty, 0)} ks):
+            </span>
             <span className="total-price">
               {Math.round(totalPrice * (1 + tipPercent / 100))} Kč
             </span>

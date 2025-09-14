@@ -70,7 +70,7 @@ const BottomBar = () => {
       <PaymentModal
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
-  total={Math.round(totalPrice)}
+        total={Math.round(totalPrice)}
         onPaymentConfirm={handlePaymentConfirm}
       />
     </>
