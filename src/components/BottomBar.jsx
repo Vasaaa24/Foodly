@@ -45,6 +45,8 @@ const BottomBar = () => {
     setShowPaymentModal(false);
   };
 
+  if (isCartPage) return null;
+
   return (
     <>
       <div className="bottom-bar">
@@ -58,9 +60,9 @@ const BottomBar = () => {
           <button
             className="bottom-order-btn"
             onClick={handleActionClick}
-            disabled={totalItems === 0 || (isCartPage && !selectedTable)}
+            disabled={totalItems === 0}
           >
-            {isCartPage ? "Zaplatit" : "Objednat"}
+            Objednat
           </button>
         </div>
       </div>

@@ -39,7 +39,10 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="header-left">
+        <div
+          className="header-left"
+          style={{ minWidth: 48, display: "flex", alignItems: "center" }}
+        >
           {/* Burger menu odstraněno - administrace je skrytá */}
         </div>
 

@@ -542,7 +542,7 @@ body {
 
 /* Header Styles */
 .header {
-  background: #0055AA;
+  background: #0055aa;
   color: #2d2d2d;
   padding: 1rem 0;
   box-shadow: 0 3.5px 12px rgba(0, 0, 0, 0.15);
@@ -986,7 +986,7 @@ body {
 .category-tab {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  border: 2px solid #0055AA;
+  border: 2px solid #0055aa;
   background: #ffffff;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -1036,11 +1036,10 @@ body {
 }
 
 .category-tab.active {
-  background: #0055AA;
+  background: #0055aa;
   color: white;
-  
+
   transform: translateY(-2px);
-  
 }
 
 .category-tab.active::before {
@@ -1184,13 +1183,13 @@ body {
 
 .clear-cart-btn {
   background: transparent;
-  color: #e53e3e;
-  border: 1px solid #e53e3e;
+  color: #000000;
+  border: 1px solid #5d3ee5;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -1211,8 +1210,8 @@ body {
 }
 
 .continue-shopping-btn {
-  background: #e53e3e;
-  color: white;
+  background: #0055aa;
+  color: #fff;
   border: none;
   padding: 0.875rem 1.5rem;
   border-radius: 8px;
@@ -1220,11 +1219,13 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: none;
 }
 
 .continue-shopping-btn:active {
   transform: scale(0.95);
-  background: #c53030;
+  background: #003e7a;
+  color: #fff;
 }
 
 /* Cart Items */
