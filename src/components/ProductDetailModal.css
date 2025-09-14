@@ -1,3 +1,24 @@
+.details-toggle-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #0055aa;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-toggle-label {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
 /* Product Detail Modal */
 .product-modal-overlay {
   position: fixed;
@@ -86,9 +107,9 @@
   min-height: 260px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.267);
   margin-top: 2rem;
-} 
+}
 
 .product-modal-info {
   flex: 1;

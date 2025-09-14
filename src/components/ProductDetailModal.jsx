@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./ProductDetailModal.css";
 
 const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
+  const [showDetails, setShowDetails] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [comment, setComment] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -213,9 +214,21 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
               {product?.description || "Popis není k dispozici"}
             </p>
             {product?.detailDescription && (
-              <div className="product-detailed-description">
-                <h4>Podrobné informace:</h4>
-                <p>{product.detailDescription}</p>
+              <div className="product-detailed-description-accordion">
+                <button
+                  className="details-toggle-btn"
+                  onClick={() => setShowDetails((v) => !v)}
+                  aria-expanded={showDetails}
+                >
+                  <span className="details-toggle-label">
+                    {showDetails ? '▼' : '▶'} Podrobné informace
+                  </span>
+                </button>
+                {showDetails && (
+                  <div className="product-detailed-description">
+                    <p>{product.detailDescription}</p>
+                  </div>
+                )}
               </div>
             )}
           </div>
