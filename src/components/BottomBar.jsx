@@ -50,7 +50,7 @@ const BottomBar = () => {
       <div className="bottom-bar">
         <div className="bottom-bar-content">
           <Link to="/cart" className="bottom-cart-link">
-          🐒 ({totalItems})
+            Košík ({totalItems})
           </Link>
 
           <div className="bottom-total">{totalPrice.toFixed(2)} Kč</div>
