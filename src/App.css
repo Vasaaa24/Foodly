@@ -542,7 +542,7 @@ body {
 
 /* Header Styles */
 .header {
-  background: #0055aa;
+  background: #8B5CF6;
   color: #2d2d2d;
   padding: 1rem 0;
   box-shadow: 0 3.5px 12px rgba(0, 0, 0, 0.15);
@@ -986,7 +986,7 @@ body {
 .category-tab {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  border: 2px solid #0055aa;
+  border: 2px solid #8B5CF6;
   background: #ffffff;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -1036,7 +1036,7 @@ body {
 }
 
 .category-tab.active {
-  background: #0055aa;
+  background: #8B5CF6;
   color: white;
 
   transform: translateY(-2px);
@@ -1147,7 +1147,7 @@ body {
 }
 
 .add-to-cart-btn {
-  background: #0055aa;
+  background: #8B5CF6;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -1702,7 +1702,7 @@ body {
 }
 
 .bottom-order-btn {
-  background: #f5a623;
+  background: #8B5CF6;
   color: white;
   border: none;
   padding: 0.75rem 1.25rem;

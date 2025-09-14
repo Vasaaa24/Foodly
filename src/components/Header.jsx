@@ -95,8 +95,8 @@ const Header = () => {
                 src={kosPng}
                 alt="Košík"
                 style={{
-                  width: 30,
-                  height: 30,
+                  width: 35,
+                  height: 35,
                   objectFit: "contain",
                   display: "block",
                   marginRight: 15,
