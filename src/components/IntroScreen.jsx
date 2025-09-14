@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import "./IntroScreen.css";
 import qrestLogo from "../assets/qrest-logo.png";
@@ -28,18 +27,26 @@ const IntroScreen = ({ onComplete }) => {
           <div className="circle circle-5"></div>
         </div>
 
-
-
-        <div className="intro-content" style={{ marginTop: '-80px' }}>
-          <div className="logo-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '32px' }}>
-            <img src={qrestLogo} alt="QRest logo" style={{ width: '260px', height: '260px', objectFit: 'contain' }} />
+        <div className="intro-content" style={{ marginTop: "-80px" }}>
+          <div
+            className="logo-container"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "32px",
+            }}
+          >
+            <img
+              src={qrestLogo}
+              alt="QRest logo"
+              style={{ width: "260px", height: "260px", objectFit: "contain" }}
+            />
           </div>
           <div className="loading-bar">
             <div className="loading-progress"></div>
           </div>
         </div>
-
-
       </div>
     </div>
   );

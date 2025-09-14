@@ -77,12 +77,16 @@ const Header = () => {
 
         <div className="header-right">
           {!isAdminPage && (
-              <Link to="/cart" className="cart-icon">
-                🐒
-                {totalItems > 0 && (
-                  <span className="cart-badge">{totalItems}</span>
-                )}
-              </Link>
+            <Link
+              to="/cart"
+              className="cart-icon"
+              style={{ fontSize: "2rem", lineHeight: 1 }}
+            >
+              🧺
+              {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )}
+            </Link>
           )}
         </div>
       </div>

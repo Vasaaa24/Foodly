@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background: #0055AA;
+  background: #0055aa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,8 +129,6 @@
   gap: 1rem;
   margin-bottom: 2rem;
 }
-
-
 
 /* Vidlička ikona */
 .fork-icon {
@@ -291,7 +289,6 @@
 }
 
 /* Sparkles */
-
 
 /* Responsive design */
 @media (max-width: 428px) {
