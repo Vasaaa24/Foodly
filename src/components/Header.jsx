@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import qrestLogo from "../assets/qrest-logo.png";
+import kosPng from "../assets/kos.png";
 
 const Header = () => {
   const { totalItems } = useCart();
@@ -80,9 +81,24 @@ const Header = () => {
             <Link
               to="/cart"
               className="cart-icon"
-              style={{ fontSize: "2.2rem", lineHeight: 1 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 0,
+              }}
             >
-              🍝
+              <img
+                src={kosPng}
+                alt="Košík"
+                style={{
+                  width: 38,
+                  height: 38,
+                  objectFit: "contain",
+                  display: "block",
+                  marginRight: 10,
+                }}
+              />
               {totalItems > 0 && (
                 <span className="cart-badge">{totalItems}</span>
               )}
