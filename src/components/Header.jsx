@@ -80,7 +80,7 @@ const Header = () => {
             <Link
               to="/cart"
               className="cart-icon"
-              style={{ fontSize: "2rem", lineHeight: 1 }}
+              style={{ fontSize: "2.2rem", lineHeight: 1 }}
             >
               🍝
               {totalItems > 0 && (
