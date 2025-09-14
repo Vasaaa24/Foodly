@@ -16,18 +16,18 @@ const CART_ACTIONS = {
 const cartReducer = (state, action) => {
   switch (action.type) {
     case CART_ACTIONS.ADD_ITEM: {
-      const existingItemIndex = state.items.findIndex(
-        (item) => item.id === action.payload.id
-      );
-
+      // Pokud přidáváme položku s qty/quantity > 1, přičteme správně
+      const incomingQty = action.payload.qty || action.payload.quantity || 1;
+      const itemId = action.payload.id;
+      const existingItemIndex = state.items.findIndex((item) => item.id === itemId);
       if (existingItemIndex >= 0) {
         const updatedItems = [...state.items];
-        updatedItems[existingItemIndex].qty += 1;
+        updatedItems[existingItemIndex].qty += incomingQty;
         return { ...state, items: updatedItems };
       } else {
         return {
           ...state,
-          items: [...state.items, { ...action.payload, qty: 1 }],
+          items: [...state.items, { ...action.payload, qty: incomingQty }],
         };
       }
     }

@@ -55,7 +55,7 @@ const BottomBar = () => {
             Košík ({totalItems})
           </Link>
 
-          <div className="bottom-total">{totalPrice.toFixed(2)} Kč</div>
+          <div className="bottom-total">{Math.round(totalPrice)} Kč</div>
 
           <button
             className="bottom-order-btn"
@@ -70,7 +70,7 @@ const BottomBar = () => {
       <PaymentModal
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
-        total={totalPrice.toFixed(2)}
+  total={Math.round(totalPrice)}
         onPaymentConfirm={handlePaymentConfirm}
       />
     </>

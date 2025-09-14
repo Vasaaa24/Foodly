@@ -21,9 +21,9 @@ const CartPage = () => {
       <div className="cart-summary">
         <div className="total-section">
           <div className="total-line">
-            <span>Celkem ({totalItems} položek):</span>
+            <span>Celkem ({items.reduce((sum, item) => sum + item.qty, 0)} ks):</span>
             <span className="total-price">
-              {(totalPrice * (1 + tipPercent / 100)).toFixed(2)} Kč
+              {Math.round(totalPrice * (1 + tipPercent / 100))} Kč
             </span>
           </div>
         </div>
@@ -101,7 +101,7 @@ const CartPage = () => {
         <PaymentModal
           isOpen={showPaymentModal}
           onClose={() => setShowPaymentModal(false)}
-          total={(totalPrice * (1 + tipPercent / 100)).toFixed(2)}
+          total={Math.round(totalPrice * (1 + tipPercent / 100))}
           onPaymentConfirm={(paymentMethod, paymentData) => {
             // Generuj náhodné ID objednávky
             const orderId = Math.floor(Math.random() * 10000);
@@ -111,7 +111,7 @@ const CartPage = () => {
                 paymentMethod,
                 paymentData,
                 items: [...items],
-                total: (totalPrice * (1 + tipPercent / 100)).toFixed(2),
+                total: Math.round(totalPrice * (1 + tipPercent / 100)),
                 selectedTable,
                 tipPercent,
               },

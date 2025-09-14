@@ -138,7 +138,7 @@ const PaymentModal = ({ isOpen, onClose, total, onPaymentConfirm }) => {
             <h2>Vyberte způsob platby</h2>
             <div className="total-amount">
               <span>Celkem k úhradě: </span>
-              <strong>{total} Kč</strong>
+              <strong>{Math.round(total)} Kč</strong>
             </div>
 
             <div className="payment-methods-grid">
