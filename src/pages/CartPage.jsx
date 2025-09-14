@@ -22,7 +22,9 @@ const CartPage = () => {
         <div className="total-section">
           <div className="total-line">
             <span>Celkem ({totalItems} položek):</span>
-            <span className="total-price">{(totalPrice * (1 + tipPercent / 100)).toFixed(2)} Kč</span>
+            <span className="total-price">
+              {(totalPrice * (1 + tipPercent / 100)).toFixed(2)} Kč
+            </span>
           </div>
         </div>
 
@@ -38,20 +40,25 @@ const CartPage = () => {
                 type="button"
                 onClick={() => setTipPercent(percent)}
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   padding: "0.6rem 1.2rem",
                   borderRadius: 10,
                   border:
                     percent === tipPercent
-                      ? "2px solid #43a047"
-                      : "1.5px solid #b3b3b3",
+                      ? "3px solid #43a047"
+                      : "2.5px solid #b3b3b3",
                   background: percent === tipPercent ? "#e8f5e9" : "#fff",
                   color: percent === tipPercent ? "#43a047" : "#222",
                   fontWeight: percent === tipPercent ? 700 : 500,
                   fontSize: "1rem",
+                  fontWeight: "600",
                   cursor: "pointer",
                   transition: "all 0.2s",
                   outline: "none",
                   minWidth: 48,
+                  minHeight: 38,
                 }}
               >
                 {percent}%
