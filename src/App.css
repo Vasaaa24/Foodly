@@ -1029,10 +1029,10 @@ body {
 }
 
 .category-tab:hover {
-  border-color: #e53e3e;
-  color: #e53e3e;
+
+
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.15);
+
 }
 
 .category-tab.active {
@@ -1147,7 +1147,7 @@ body {
 }
 
 .add-to-cart-btn {
-  background: #f5a523cc;
+  background: #0055aa;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
