@@ -43,7 +43,6 @@ const Header = () => {
           {/* Burger menu odstraněno - administrace je skrytá */}
         </div>
 
-
         <div
           className="header-center"
           style={{
