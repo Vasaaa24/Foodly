@@ -81,7 +81,7 @@
 }
 
 .product-modal-image {
-  min-width: 600px;
+  max-width: 600px;
   min-height: 260px;
   object-fit: cover;
 
