@@ -29,12 +29,11 @@ const IntroScreen = ({ onComplete }) => {
         </div>
 
 
-        <div className="intro-content">
 
+        <div className="intro-content" style={{ marginTop: '-80px' }}>
           <div className="logo-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '32px' }}>
             <img src={qrestLogo} alt="QRest logo" style={{ width: '260px', height: '260px', objectFit: 'contain' }} />
           </div>
-
           <div className="loading-bar">
             <div className="loading-progress"></div>
           </div>
