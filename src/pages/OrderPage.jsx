@@ -181,7 +181,7 @@ const OrderPage = () => {
         <PaymentModal
           isOpen={showPaymentModal}
           onClose={handlePaymentModalClose}
-          total={total?.toFixed(2) || totalPrice.toFixed(2)}
+          total={Number(total)?.toFixed(2) || totalPrice.toFixed(2)}
           onPaymentConfirm={handlePaymentConfirm}
         />
       </div>
@@ -232,7 +232,7 @@ const OrderPage = () => {
             <div className="order-detail-row total">
               <span className="label">Celková cena:</span>
               <span className="value">
-                {(total || totalPrice).toFixed(2)} Kč
+                {Number(total || totalPrice).toFixed(2)} Kč
               </span>
             </div>
           </div>
