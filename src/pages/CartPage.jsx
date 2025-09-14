@@ -9,6 +9,7 @@ const CartPage = () => {
   const navigate = useNavigate();
   const [tipPercent, setTipPercent] = useState(0);
   const tipOptions = [0, 5, 10, 15, 20];
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   return (
     <div className="cart-page">
       <div className="cart-items">
