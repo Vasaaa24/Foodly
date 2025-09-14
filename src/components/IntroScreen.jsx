@@ -32,7 +32,7 @@ const IntroScreen = ({ onComplete }) => {
         <div className="intro-content">
 
           <div className="logo-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '32px' }}>
-            <img src={qrestLogo} alt="QRest logo" style={{ width: '180px', height: '180px', objectFit: 'contain' }} />
+            <img src={qrestLogo} alt="QRest logo" style={{ width: '260px', height: '260px', objectFit: 'contain' }} />
           </div>
 
           <div className="loading-bar">
