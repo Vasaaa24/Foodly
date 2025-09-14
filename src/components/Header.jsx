@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import qrestLogo from "../assets/qrest-logo.png";
 
 const Header = () => {
   const { totalItems } = useCart();
@@ -41,9 +42,36 @@ const Header = () => {
           {/* Burger menu odstraněno - administrace je skrytá */}
         </div>
 
-        <div className="header-center">
-          <Link to="/" className="logo">
-            <h1>{isAdminPage ? "⚙️ Administrace" : "🍽️ Foodly"}</h1>
+        <div
+          className="header-center"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Link
+            to="/"
+            className="logo"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <img
+              src={qrestLogo}
+              alt="QRest logo"
+              style={{
+                height: 60,
+                width: 120,
+                objectFit: "contain",
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
           </Link>
         </div>
 
