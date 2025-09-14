@@ -525,7 +525,7 @@
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: #121212;
+  background: #ffffff;
   min-height: 100vh;
   color: #2d2d2d;
   line-height: 1.4;
@@ -542,7 +542,7 @@ body {
 
 /* Header Styles */
 .header {
-  background: #1e1e1e;
+  background: #0055AA;
   color: #2d2d2d;
   padding: 1rem 0;
   box-shadow: 0 3.5px 12px rgba(0, 0, 0, 0.15);
@@ -985,7 +985,7 @@ body {
 .category-tab {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #0055AA;
   background: #ffffff;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -1035,13 +1035,11 @@ body {
 }
 
 .category-tab.active {
-  background: #202020;
+  background: #0055AA;
   color: white;
-  border-color: #f5a523cc;
+  
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px 0 rgba(245, 165, 35, 0.527),
-    0 6px 200px 0 rgba(245, 165, 35, 0.25),
-    0 1.5px 0 rgba(255, 200, 80, 0.18) inset;
+  
 }
 
 .category-tab.active::before {
