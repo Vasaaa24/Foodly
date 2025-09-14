@@ -22,7 +22,7 @@ const CartPage = () => {
         <div className="total-section">
           <div className="total-line">
             <span>Celkem ({totalItems} položek):</span>
-            <span className="total-price">{totalPrice.toFixed(2)} Kč</span>
+            <span className="total-price">{(totalPrice * (1 + tipPercent / 100)).toFixed(2)} Kč</span>
           </div>
         </div>
 
