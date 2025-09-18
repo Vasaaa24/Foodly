@@ -203,7 +203,7 @@
   color: #666;
   text-align: center;
   min-width: 120px;
-  width: 80%;
+  width: 90%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: relative;
 }
@@ -252,7 +252,7 @@
 
 .comment-input {
   width: 100%;
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
   padding: 15px;
   border: 3px solid #e0e0e0;
