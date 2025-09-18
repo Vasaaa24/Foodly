@@ -291,7 +291,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
         </div>
 
         <div className="product-modal-footer">
-          <div className="total-price">
+          <div className="total-price" style={{color: '#000'}}>
             Celkem: <strong>{calculateTotalPrice()} Kč</strong>
           </div>
           <div className="modal-actions">
