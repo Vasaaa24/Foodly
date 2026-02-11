@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,6 +16,9 @@ import OrderPage from "./pages/OrderPage";
 import QRGeneratorPage from "./pages/QRGeneratorPage";
 import IntroScreen from "./components/IntroScreen";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import SearchPage from "./pages/SearchPage";
+import AboutPage from "./pages/AboutPage";
+import PasswordScreen from "./components/PasswordScreen";
 import "./App.css";
 
 function AppContent() {
@@ -41,6 +44,8 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<MenuPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/order/:id" element={<OrderPage />} />
           {/* Skrytá admin route - přístupná jen přímým odkazem */}
           <Route path="/qr-generator" element={<QRGeneratorPage />} />
@@ -57,11 +62,37 @@ function AppContent() {
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Kontrola autentizace při načtení
+  useEffect(() => {
+    const authStatus = localStorage.getItem("isAuthenticated");
+    if (authStatus === "true") {
+      setIsAuthenticated(true);
+    }
+    setIsCheckingAuth(false);
+  }, []);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
   };
 
+  const handlePasswordCorrect = () => {
+    setIsAuthenticated(true);
+  };
+
+  // Počkat na kontrolu autentizace
+  if (isCheckingAuth) {
+    return null; // Nebo loading screen
+  }
+
+  // Pokud není autentizovaný, zobraz password screen
+  if (!isAuthenticated) {
+    return <PasswordScreen onPasswordCorrect={handlePasswordCorrect} />;
+  }
+
+  // Pokud je autentizovaný, ale ještě neviděl intro
   if (showIntro) {
     return <IntroScreen onComplete={handleIntroComplete} />;
   }

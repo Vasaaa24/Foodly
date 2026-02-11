@@ -221,7 +221,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
                   aria-expanded={showDetails}
                 >
                   <span className="details-toggle-label">
-                    {showDetails ? '▼' : '▶'} Podrobné informace
+                    {showDetails ? "▼" : "▶"} Podrobné informace
                   </span>
                 </button>
                 {showDetails && (
@@ -291,7 +291,7 @@ const ProductDetailModal = ({ product, isOpen, onClose, onAddToCart }) => {
         </div>
 
         <div className="product-modal-footer">
-          <div className="total-price" style={{color: '#000'}}>
+          <div className="total-price" style={{ color: "#000" }}>
             Celkem: <strong>{calculateTotalPrice()} Kč</strong>
           </div>
           <div className="modal-actions">

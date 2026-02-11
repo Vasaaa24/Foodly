@@ -363,6 +363,6 @@ export const MENU_ITEMS = [
     description: "Perlivá minerální voda 0.5l",
     price: 35,
     image:
-      "https://cdn.myshoptet.com/usr/eshop.optimia.cz/user/shop/big/77193-1_77193-pramenita-voda-rajec-jemne-perliva-12x-0-5-l.jpg?65142570",
+      "https://cdn.myshoptet.com/usr/www.nejkafe.cz/user/shop/big/6285_vittel-red0-33.jpg?653b7fbb",
   },
 ];

@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
 import qrestLogo from "../assets/qrest-logo.png";
-import kosPng from "../assets/kos.png";
 
 const Header = () => {
-  const { totalItems } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
   const [keySequence, setKeySequence] = useState([]);
@@ -79,36 +76,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="header-right">
-          {!isAdminPage && (
-            <Link
-              to="/cart"
-              className="cart-icon"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 0,
-              }}
-            >
-              <img
-                src={kosPng}
-                alt="Košík"
-                style={{
-                  width: 35,
-                  height: 35,
-                  objectFit: "contain",
-                  display: "block",
-                  marginRight: 15,
-                  marginTop: 9,
-                }}
-              />
-              {totalItems > 0 && (
-                <span className="cart-badge">{totalItems}</span>
-              )}
-            </Link>
-          )}
-        </div>
+        <div className="header-right"></div>
       </div>
     </header>
   );
